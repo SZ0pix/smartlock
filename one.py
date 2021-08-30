@@ -5,13 +5,35 @@ from PyQt5 import QtGui as qtg                               #fonts graphical st
 import time
 import os
 import datetime
+import logging
 import logs
+
+logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 flags = qtc.Qt.WindowFlags(qtc.Qt.FramelessWindowHint | qtc.Qt.WindowStaysOnTopHint)
 
 HEIGHT = 640                                                    #standard window size
 WIDTH = 1000
 PASSCODE = '777888'                                             #password
+
+endSig = qtc.pyqtSignal()
+
+class SerialCom(qtc.QRunnable):
+    def __init__(self):
+        super().__init__()
+    finished = qtc.pyqtSignal()
+    progress = qtc.pyqtSignal(int)
+
+
+    def run(self):
+        i = 0
+        while(True):
+            i += 1
+            time.sleep(1)
+            logging.info(f"Mamy {i}")
+            #self.progress.emit(i+1)
+        #self.finished.emit()
+
 
 
 class MainWindow(qwt.QWidget):
@@ -21,6 +43,7 @@ class MainWindow(qwt.QWidget):
         ## Start code here
         time.sleep(1)
         self.switch_to_first()
+        self.runTask()
 
     def switch_to_first(self):
          self.first_window = FirstWindow()
@@ -28,6 +51,24 @@ class MainWindow(qwt.QWidget):
          self.first_window.setWindowTitle('First')
          self.first_window.move(0, 50)
          self.first_window.show()
+
+    def runTask(self):
+        pool = qtc.QThreadPool.globalInstance()
+        runnalbe = SerialCom()
+        pool.start(runnalbe)
+
+
+    #def runLongTask(self):
+    #    self.thread = qtc.QThread()
+    #    self.serialcom  = SerialCom()
+    #    self.serialcom.moveToThread(self.thread)
+
+    #    self.thread.started.conntect(self.serialcom.taks)
+    #    self.serialcom.finished.connect(self.thread.quit)
+    #    self.serialcom.finished.connect(self.serialcom.deleteLater)
+    #    self.thread.finished.connect(self.thread.deleteLater)
+    #    self.serialcom.progress.connect(self.reportProgress)
+    #    self.thread.start()
 
 
 
@@ -226,7 +267,6 @@ if __name__ == '__main__':
     app = qwt.QApplication(sys.argv)
     w = MainWindow(windowTitle='dupa dupa')
     sys.exit(app.exec_())                                        #starts eventloop
-
-    dane = [0, 0, 999]
-    print('doszliśmy')
-    logs.writeLog(dane)
+    #dane = [0, 0, 999]
+    #print('doszliśmy')
+    #logs.writeLog(dane)
