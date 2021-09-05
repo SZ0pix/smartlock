@@ -1,16 +1,25 @@
-import sys
+#QT libraries
 from PyQt5 import QtWidgets as qwt                           #basicly every GUI objects
 from PyQt5 import QtCore as qtc                              #low level stuff like signals etc.
 from PyQt5 import QtGui as qtg                               #fonts graphical stuff etc.
+
+#python libraries
 import time
 import os
 import datetime
 import logging
+import sys
+#python files
 import logs
+import logslogging
 
-logging.basicConfig(format="%(message)s", level=logging.INFO)
+data = [0,0,999]
+
+#logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 flags = qtc.Qt.WindowFlags(qtc.Qt.FramelessWindowHint | qtc.Qt.WindowStaysOnTopHint)
+
+logger2 = logging.getLogger(__name__)
 
 HEIGHT = 640                                                    #standard window size
 WIDTH = 1000
@@ -30,7 +39,7 @@ class SerialCom(qtc.QRunnable):
         while(True):
             i += 1
             time.sleep(1)
-            logging.info(f"Mamy {i}")
+            logger2.warning(f"Mamy {i}")
             #self.progress.emit(i+1)
         #self.finished.emit()
 
@@ -204,38 +213,38 @@ class ThirdWindow(qwt.QWidget):
 
     def switch_to_first(self):                                              #switch window
         self.first_window = FirstWindow()
-        self.writeLog()
+        logslogging.writeLog2(data)
         self.first_window.resize(WIDTH, HEIGHT)
         self.first_window.move(0,50)
         self.first_window.show()
         self.close()
 
 
-    def writeLog(self):
-        data = [0,0,999]
-        try:
-            now = datetime.datetime.now()
-            dir_path = os.path.dirname(os.path.realpath(__file__)) ## na raspberce będzie działac ale na windowsie nie
+    #def writeLog(self):
+    #    data = [0,0,999]
+    #    try:
+    #        now = datetime.datetime.now()
+    #        dir_path = os.path.dirname(os.path.realpath(__file__)) ## na raspberce będzie działac ale na windowsie nie
 
-            path = "C:/Users/mjszo/Desktop/SmartLockLog-{}.txt".format(now.strftime("%B 20%y"))
-            print(dir_path)
-            file = open(path, mode='a+')
+    #        path = "C:/Users/mjszo/Desktop/SmartLockLog-{}.txt".format(now.strftime("%B 20%y"))
+    #        print(dir_path)
+    #        file = open(path, mode='a+')
 
-            dataToFile = now.strftime("20%y.%m.%d  %H:%M")
-            if (data[0] == 0 and data[1] == 0 and data[2] == 999):
-                file.writelines("{}  Access denied. Unknown user.\n".format(dataToFile))
-            elif (data[0] == 0 and data[1] == 999 and data[2] == 0):
-                file.writelines("{}  Access denied. Wrong code\n".format(dataToFile))
-            elif data[0] == 1:
-                file.writelines("{}  Access granted. Used userID={}\n".format(dataToFile, data[2]))
-            elif data[0] == 2:
-                file.writelines("{}  Access granted. Correct code\n")
-            else:
-                pass
+    #        dataToFile = now.strftime("20%y.%m.%d  %H:%M")
+    #        if (data[0] == 0 and data[1] == 0 and data[2] == 999):
+    #            file.writelines("{}  Access denied. Unknown user.\n".format(dataToFile))
+    #        elif (data[0] == 0 and data[1] == 999 and data[2] == 0):
+    #            file.writelines("{}  Access denied. Wrong code\n".format(dataToFile))
+    #        elif data[0] == 1:
+    #            file.writelines("{}  Access granted. Used userID={}\n".format(dataToFile, data[2]))
+    #        elif data[0] == 2:
+    #            file.writelines("{}  Access granted. Correct code\n")
+    #        else:
+    #            pass
 
-            file.close()
-        except:
-            pass
+     #       file.close()
+     #   except:
+     #       pass
 
 
 
