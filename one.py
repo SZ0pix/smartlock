@@ -2,6 +2,9 @@
 from PyQt5 import QtWidgets as qwt                           #basicly every GUI objects
 from PyQt5 import QtCore as qtc                              #low level stuff like signals etc.
 from PyQt5 import QtGui as qtg                               #fonts graphical stuff etc.
+from PyQt5 import uic
+
+
 
 #python libraries
 import time
@@ -15,6 +18,8 @@ import logslogging
 
 data = [0,0,999]
 
+Ui_AccessGranted, baseClass = uic.loadUiType("C:/Users/mjszo/Desktop/1/acces.ui")
+Ui_Keyboard, baseClass = uic.loadUiType("C:/Users/mjszo/Desktop/1/keyboard.ui")
 #logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 flags = qtc.Qt.WindowFlags(qtc.Qt.FramelessWindowHint | qtc.Qt.WindowStaysOnTopHint)
@@ -26,6 +31,8 @@ WIDTH = 1000
 PASSCODE = '777888'                                             #password
 
 endSig = qtc.pyqtSignal()
+
+
 
 class SerialCom(qtc.QRunnable):
     def __init__(self):
@@ -61,10 +68,18 @@ class MainWindow(qwt.QWidget):
          self.first_window.move(0, 50)
          self.first_window.show()
 
+    def screenSaver(self):
+        self.tmscs = qtc.QTimer()  # one shot timer for 60 seconds
+        self.tmscs.setSingleShot(True)
+        self.tmscs.timeout.connect(self.switch_to_first)
+
+        self.tmr1.start(4000)
+
     def runTask(self):
         pool = qtc.QThreadPool.globalInstance()
         runnalbe = SerialCom()
         pool.start(runnalbe)
+
 
 
     #def runLongTask(self):
@@ -116,62 +131,90 @@ class FirstWindow(qwt.QWidget):
 
 class SecondWindow(qwt.QWidget):
     number = ''
+    var1=0
 
     def __init__(self, *args, **kwargs):
-         super().__init__(*args, **kwargs)
+
+        super().__init__(*args, **kwargs)
+        self.ui = Ui_Keyboard()
+        self.ui.setupUi(self)
+        self.checkLabel()
+        #self.setWindowFlags(flags)
+        #self.ui.button_key1.clicked.connect(self.push1)
+        #self.ui.button_key2.clicked.connect(self.push2)
+        #self.ui.button_key3.clicked.connect(self.push3)
+        #self.ui.button_key4.clicked.connect(self.push4)
+        #self.ui.button_key5.clicked.connect(self.push5)
+        #self.ui.button_key6.clicked.connect(self.push6)
+        self.ui.button_key7.clicked.connect(self.push7)
+        self.ui.button_key8.clicked.connect(self.push8)
+        #self.ui.button_key9.clicked.connect(self.push9)
+        #self.ui.button_key0.clicked.connect(self.push0)
+        self.ui.button_keyBack.clicked.connect(self.switch_to_first)
 
 
-         self.password_input = qwt.QLabel('')
+    def checkLabel(self):
+        if (len(self.number)==0):
+            self.ui.label_key.setText("PASSWORD")  # show message and after 4 sec go back
+        elif (len(self.number)==1):
+            self.ui.label_key.setText("*")
+        elif (len(self.number)==2):
+            self.ui.label_key.setText("* *")
+        elif (len(self.number)==3):
+            self.ui.label_key.setText("* * *")
+        elif (len(self.number)==4):
+            self.ui.label_key.setText("* * * *")
+        elif (len(self.number)==5):
+            self.ui.label_key.setText("* * * * *")
+        elif (len(self.number)>=6):
+            self.ui.label_key.setText("* * * * * *")
+
+        #self.ui.button.setFlat(True)
+
+        #self.password_input = qwt.QLabel('')
 
 
-         self.number7 = qwt.QPushButton('7')
-         self.number8 = qwt.QPushButton('8')
-         self.number9 = qwt.QPushButton('9')
 
-         self.button_back_2 = qwt.QPushButton('Back')
-         self.button_back_2.clicked.connect(self.switch_to_first)
+        #layout_second = qwt.QHBoxLayout()
+        #layout_second.addWidget(self.password_input)
+        #layout_second.addWidget(self.number7)
+        #layout_second.addWidget(self.number8)
+        #layout_second.addWidget(self.number9)
 
-         layout_second = qwt.QHBoxLayout()
-         layout_second.addWidget(self.password_input)
-         layout_second.addWidget(self.number7)
-         layout_second.addWidget(self.number8)
-         layout_second.addWidget(self.number9)
+        #layout_second.addWidget(self.button_back_2)
 
-         layout_second.addWidget(self.button_back_2)
+        #self.setLayout(layout_second)
 
-         self.setLayout(layout_second)
+        #self.number7.clicked.connect(self.push7)
 
-         self.number7.clicked.connect(self.push7)
-
-         self.number8.clicked.connect(self.push8)
-         #self.number9.clicked.connect(push9)
+        #self.number8.clicked.connect(self.push8)
+        #self.number9.clicked.connect(push9)
 
 
 
     def push7(self):
-        if (len(self.password_input.text())<=5):
+        if (len(self.number)<=5):
             self.number += '7'
-            self.password_input.setText(self.number)
-            self.password_input.show()
+            print(self.number)
+            self.checkLabel()
             self.checkPassword()
 
     def push8(self):
-        if (len(self.password_input.text())<=5):
+        if (len(self.number) <= 5):
             self.number += '8'
-            self.password_input.setText(self.number)
+            print(self.number)
+            self.checkLabel()
             self.checkPassword()
-            self.password_input.show()
 
 
     def checkPassword(self):
-
-        password_input=self.password_input.text()
-        print(password_input)
-
-        if (password_input == ('777888')):
+        password_input=self.number
+        if (password_input == ('777777')):
             #qwt.QMessageBox.information(self,'siepr','asa')
             self.switch_to_third()
-
+        elif (password_input == ('888888')):
+            #qwt.QMessageBox.information(self,'siepr','asa')
+            self.switch_to_fourth()
 
 
     def switch_to_first(self):                                  #go back to window 1
@@ -182,22 +225,87 @@ class SecondWindow(qwt.QWidget):
         self.close()
 
     def switch_to_third(self):
+
         self.third_window = ThirdWindow()
         self.third_window.resize(WIDTH, HEIGHT)
         self.third_window.move(0,50)
         self.third_window.show()
         self.close()
 
+    def switch_to_fourth(self):
 
-class ThirdWindow(qwt.QWidget):
+        self.fourth_window = FourthWindow()
+        self.fourth_window.resize(WIDTH, HEIGHT)
+        self.fourth_window.move(0,50)
+        self.fourth_window.show()
+        self.close()
+
+
+class ThirdWindow(baseClass):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.ui = Ui_AccessGranted()
+        self.ui.setupUi(self)
+        self.setWindowFlags(flags)
+        self.ui.button.setFlat(True)
+        self.ui.button.clicked.connect(self.stopTimer)              #or if button is pushed
+        self.Win()
+
+    def Win(self):
+        self.ui.button.setText("ACCESS GRANTED")  # show message and after 4 sec go back
+        self.tmr1 = qtc.QTimer()  # one shot timer for 4 seconds
+        self.tmr1.setSingleShot(True)
+        self.tmr1.timeout.connect(self.switch_to_first)
+        self.tmr1.start(4000)
+
+    def stopTimer(self):
+        self.tmr1.stop()
+        self.switch_to_first()
+
+    def switch_to_first(self):
+        self.first_window = FirstWindow()
+        logslogging.writeLog2(data)
+        self.first_window.resize(WIDTH, HEIGHT)
+        self.first_window.move(0,50)
+        self.first_window.show()
+        self.close()
+
+
+class FourthWindow(ThirdWindow):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.Win()
+
+    def Win(self):
+        self.ui.button.setText("ACCESS DENIED")  # show message and after 4 sec go back
+        self.tmr2 = qtc.QTimer()  # one shot timer for 4 seconds
+        self.tmr2.setSingleShot(True)
+        self.tmr2.timeout.connect(self.switch_to_first)
+        self.tmr2.start(8000)
+
+    def stopTimer(self):
+        self.tmr2.stop()
+        self.switch_to_first()
+
+    def switch_to_first(self):
+        self.first_window = FirstWindow()
+        #logslogging.writeLog2(data)
+        self.first_window.resize(WIDTH, HEIGHT)
+        self.first_window.move(0, 50)
+        self.first_window.show()
+        self.close()
+
+
+class ScreenSaver(qwt.QWidget):
 
     def __init__(self, *args, **kwargs):
          super().__init__(*args, **kwargs)
 
 
-         self.haha = qwt.QLabel('haha')
+         self.haha = qwt.QLabel('wygaszacz')
 
-         self.button_done = qwt.QPushButton('PERMISSION GRANTED')           #show message and after 4 sec go back
+         self.button_done = qwt.QPushButton('Wygaszacz')           #show message and after 4 sec go back
          self.button_done.clicked.connect(self.switch_to_first)             #or if button is pushed
          layout_s2econd = qwt.QHBoxLayout()
          layout_s2econd.addWidget(self.haha)
@@ -208,47 +316,15 @@ class ThirdWindow(qwt.QWidget):
          self.tmr1 = qtc.QTimer()                                           #one shot timer for 4 seconds
          self.tmr1.setSingleShot(True)
          self.tmr1.timeout.connect(self.switch_to_first)
-
          self.tmr1.start(4000)
 
     def switch_to_first(self):                                              #switch window
         self.first_window = FirstWindow()
-        logslogging.writeLog2(data)
+        #logslogging.writeLog2(data)
         self.first_window.resize(WIDTH, HEIGHT)
         self.first_window.move(0,50)
         self.first_window.show()
         self.close()
-
-
-    #def writeLog(self):
-    #    data = [0,0,999]
-    #    try:
-    #        now = datetime.datetime.now()
-    #        dir_path = os.path.dirname(os.path.realpath(__file__)) ## na raspberce będzie działac ale na windowsie nie
-
-    #        path = "C:/Users/mjszo/Desktop/SmartLockLog-{}.txt".format(now.strftime("%B 20%y"))
-    #        print(dir_path)
-    #        file = open(path, mode='a+')
-
-    #        dataToFile = now.strftime("20%y.%m.%d  %H:%M")
-    #        if (data[0] == 0 and data[1] == 0 and data[2] == 999):
-    #            file.writelines("{}  Access denied. Unknown user.\n".format(dataToFile))
-    #        elif (data[0] == 0 and data[1] == 999 and data[2] == 0):
-    #            file.writelines("{}  Access denied. Wrong code\n".format(dataToFile))
-    #        elif data[0] == 1:
-    #            file.writelines("{}  Access granted. Used userID={}\n".format(dataToFile, data[2]))
-    #        elif data[0] == 2:
-    #            file.writelines("{}  Access granted. Correct code\n")
-    #        else:
-    #            pass
-
-     #       file.close()
-     #   except:
-     #       pass
-
-
-
-
 
 
 
