@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AccesGranted</class>
+ <widget class="QWidget" name="AccesGranted">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1001</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label_start">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>644</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>graphic/emoto1.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_start">
+   <property name="geometry">
+    <rect>
+     <x>175</x>
+     <y>430</y>
+     <width>650</width>
+     <height>120</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri Light</family>
+     <pointsize>36</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

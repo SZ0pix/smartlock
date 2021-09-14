@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AccesGranted</class>
+ <widget class="QWidget" name="AccesGranted">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>644</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="background_screen">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>644</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>graphic/emoto2.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_screen">
+   <property name="geometry">
+    <rect>
+     <x>73</x>
+     <y>30</y>
+     <width>854</width>
+     <height>480</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_screen">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>644</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	border-width: 1px;
+	border-radius: 1px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

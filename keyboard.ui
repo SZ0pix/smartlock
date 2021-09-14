@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1049</width>
     <height>644</height>
    </rect>
   </property>
@@ -16,43 +16,53 @@
   <widget class="QLabel" name="label_key">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>20</y>
-     <width>781</width>
+     <x>233</x>
+     <y>30</y>
+     <width>534</width>
      <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(173, 173, 177);
-color: rgb(255, 255, 255);
-border-color: rgb(94, 80, 93);
-border-style: outset;
-border-width: 3px;
-border-color: rgb(10, 10, 10);
-color: rgb(241, 242, 243);
+    <string notr="true">	border-style: solid;
+	border-color: rgb(146, 150, 150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
    </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QPushButton" name="button_key1">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>160</y>
-     <width>141</width>
-     <height>91</height>
+     <x>69</x>
+     <y>140</y>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri Light</family>
+     <pointsize>36</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>1</string>
@@ -61,20 +71,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key2">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>160</y>
-     <width>141</width>
-     <height>91</height>
+     <x>247</x>
+     <y>140</y>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>2</string>
@@ -83,20 +92,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key3">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>160</y>
-     <width>141</width>
-     <height>91</height>
+     <x>425</x>
+     <y>140</y>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>3</string>
@@ -105,20 +113,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key4">
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>160</y>
-     <width>141</width>
-     <height>91</height>
+     <x>603</x>
+     <y>140</y>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>4</string>
@@ -127,20 +134,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key9">
    <property name="geometry">
     <rect>
-     <x>600</x>
+     <x>603</x>
      <y>270</y>
-     <width>141</width>
-     <height>91</height>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>9</string>
@@ -149,20 +155,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key8">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>425</x>
      <y>270</y>
-     <width>141</width>
-     <height>91</height>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>8</string>
@@ -171,20 +176,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key7">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>247</x>
      <y>270</y>
-     <width>141</width>
-     <height>91</height>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>7</string>
@@ -193,20 +197,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key6">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>69</x>
      <y>270</y>
-     <width>141</width>
-     <height>91</height>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>6</string>
@@ -215,20 +218,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key0">
    <property name="geometry">
     <rect>
-     <x>770</x>
+     <x>781</x>
      <y>270</y>
-     <width>141</width>
-     <height>91</height>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>0</string>
@@ -237,20 +239,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_key5">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>160</y>
-     <width>141</width>
-     <height>91</height>
+     <x>781</x>
+     <y>140</y>
+     <width>150</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>5</string>
@@ -259,20 +260,19 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_keyCancel">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>390</y>
-     <width>141</width>
-     <height>91</height>
+     <x>751</x>
+     <y>400</y>
+     <width>180</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>CANCEL</string>
@@ -281,25 +281,54 @@ color: rgb(241, 242, 243);
   <widget class="QPushButton" name="button_keyBack">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>530</y>
-     <width>141</width>
-     <height>91</height>
+     <x>69</x>
+     <y>400</y>
+     <width>180</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">   background-color: red;
-    border-style: outset;
-    border-width: 10px;
-    border-radius: 20px;
-    border-color: rgb(241, 247, 243);
-	color: rgb(241, 242, 243);
-    font: bold 14px;</string>
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
    </property>
    <property name="text">
     <string>BACK</string>
    </property>
   </widget>
+  <widget class="QLabel" name="background_key">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>-10</y>
+     <width>1000</width>
+     <height>644</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>graphic/emoto2.png</pixmap>
+   </property>
+  </widget>
+  <zorder>background_key</zorder>
+  <zorder>label_key</zorder>
+  <zorder>button_key3</zorder>
+  <zorder>button_key4</zorder>
+  <zorder>button_key9</zorder>
+  <zorder>button_key8</zorder>
+  <zorder>button_key7</zorder>
+  <zorder>button_key6</zorder>
+  <zorder>button_key0</zorder>
+  <zorder>button_key5</zorder>
+  <zorder>button_keyCancel</zorder>
+  <zorder>button_keyBack</zorder>
+  <zorder>button_key1</zorder>
+  <zorder>button_key2</zorder>
  </widget>
  <resources/>
  <connections/>

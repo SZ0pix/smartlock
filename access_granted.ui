@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AccesGranted</class>
+ <widget class="QWidget" name="AccesGranted">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1014</width>
+    <height>644</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="button_access">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>644</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri Light</family>
+     <pointsize>36</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="background_access">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>-10</y>
+     <width>1000</width>
+     <height>644</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>graphic/emoto2.png</pixmap>
+   </property>
+  </widget>
+  <zorder>background_access</zorder>
+  <zorder>button_access</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
