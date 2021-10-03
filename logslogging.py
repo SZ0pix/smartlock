@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 now = datetime.datetime.now()
 #create handler for file
-f_handler = logging.FileHandler("C:/Users/mjszo/Desktop/SmartLockLogLogging-{}.log".format(now.strftime("%B 20%y")))
+f_handler = logging.FileHandler("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogLogging-{}.log".format(now.strftime("%B 20%y")))
 f_handler.setLevel(logging.INFO)
 
 #create formatter for handler

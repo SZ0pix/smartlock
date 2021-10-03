@@ -4,7 +4,7 @@ import datetime
 def writeLog(data):
     try:
         now = datetime.datetime.now()
-        path = "C:/Users/mjszo/Desktop/SmartLockLog-{}.txt".format(now.strftime("%B 20%y"))
+        path = "C:/Users/mjszo/OneDrive/Desktop/SmartLockLog-{}.txt".format(now.strftime("%B 20%y"))
         print(path)
         file = open(path, mode='a+')
 

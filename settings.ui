@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AccesGranted</class>
+ <widget class="QWidget" name="AccesGranted">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label_set">
+   <property name="geometry">
+    <rect>
+     <x>195</x>
+     <y>30</y>
+     <width>634</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	border-style: solid;
+	border-color: rgb(146, 150, 150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+   </string>
+   </property>
+   <property name="text">
+    <string>WHAT DO YOU WANT TO DO?</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_key1">
+   <property name="geometry">
+    <rect>
+     <x>81</x>
+     <y>130</y>
+     <width>500</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri Light</family>
+     <pointsize>36</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+   </property>
+   <property name="text">
+    <string>ENROLL</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_key2">
+   <property name="geometry">
+    <rect>
+     <x>81</x>
+     <y>330</y>
+     <width>500</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+   </property>
+   <property name="text">
+    <string>VERIFY???</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_key6">
+   <property name="geometry">
+    <rect>
+     <x>81</x>
+     <y>230</y>
+     <width>500</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+   </property>
+   <property name="text">
+    <string>CHECK LOGS</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_setBack">
+   <property name="geometry">
+    <rect>
+     <x>763</x>
+     <y>380</y>
+     <width>180</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+   </property>
+   <property name="text">
+    <string>BACK</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="background_key">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>graphic/emoto2.png</pixmap>
+   </property>
+  </widget>
+  <zorder>background_key</zorder>
+  <zorder>label_set</zorder>
+  <zorder>button_key6</zorder>
+  <zorder>button_setBack</zorder>
+  <zorder>button_key1</zorder>
+  <zorder>button_key2</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

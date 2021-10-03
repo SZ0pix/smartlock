@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1049</width>
-    <height>644</height>
+    <width>1024</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QLabel" name="label_key">
    <property name="geometry">
     <rect>
-     <x>233</x>
+     <x>245</x>
      <y>30</y>
      <width>534</width>
      <height>71</height>
@@ -42,8 +42,8 @@
   <widget class="QPushButton" name="button_key1">
    <property name="geometry">
     <rect>
-     <x>69</x>
-     <y>140</y>
+     <x>81</x>
+     <y>130</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -71,8 +71,8 @@
   <widget class="QPushButton" name="button_key2">
    <property name="geometry">
     <rect>
-     <x>247</x>
-     <y>140</y>
+     <x>259</x>
+     <y>130</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -92,8 +92,8 @@
   <widget class="QPushButton" name="button_key3">
    <property name="geometry">
     <rect>
-     <x>425</x>
-     <y>140</y>
+     <x>437</x>
+     <y>130</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -113,8 +113,8 @@
   <widget class="QPushButton" name="button_key4">
    <property name="geometry">
     <rect>
-     <x>603</x>
-     <y>140</y>
+     <x>615</x>
+     <y>130</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -134,8 +134,8 @@
   <widget class="QPushButton" name="button_key9">
    <property name="geometry">
     <rect>
-     <x>603</x>
-     <y>270</y>
+     <x>615</x>
+     <y>250</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -155,8 +155,8 @@
   <widget class="QPushButton" name="button_key8">
    <property name="geometry">
     <rect>
-     <x>425</x>
-     <y>270</y>
+     <x>437</x>
+     <y>250</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -176,8 +176,8 @@
   <widget class="QPushButton" name="button_key7">
    <property name="geometry">
     <rect>
-     <x>247</x>
-     <y>270</y>
+     <x>259</x>
+     <y>250</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -197,8 +197,8 @@
   <widget class="QPushButton" name="button_key6">
    <property name="geometry">
     <rect>
-     <x>69</x>
-     <y>270</y>
+     <x>81</x>
+     <y>250</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -218,8 +218,8 @@
   <widget class="QPushButton" name="button_key0">
    <property name="geometry">
     <rect>
-     <x>781</x>
-     <y>270</y>
+     <x>793</x>
+     <y>250</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -239,8 +239,8 @@
   <widget class="QPushButton" name="button_key5">
    <property name="geometry">
     <rect>
-     <x>781</x>
-     <y>140</y>
+     <x>793</x>
+     <y>130</y>
      <width>150</width>
      <height>100</height>
     </rect>
@@ -260,8 +260,8 @@
   <widget class="QPushButton" name="button_keyCancel">
    <property name="geometry">
     <rect>
-     <x>751</x>
-     <y>400</y>
+     <x>763</x>
+     <y>380</y>
      <width>180</width>
      <height>100</height>
     </rect>
@@ -281,8 +281,8 @@
   <widget class="QPushButton" name="button_keyBack">
    <property name="geometry">
     <rect>
-     <x>69</x>
-     <y>400</y>
+     <x>81</x>
+     <y>380</y>
      <width>180</width>
      <height>100</height>
     </rect>
@@ -302,10 +302,10 @@
   <widget class="QLabel" name="background_key">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>-10</y>
-     <width>1000</width>
-     <height>644</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>600</height>
     </rect>
    </property>
    <property name="text">
@@ -313,6 +313,27 @@
    </property>
    <property name="pixmap">
     <pixmap>graphic/emoto2.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_keySet">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>500</y>
+     <width>341</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+   </property>
+   <property name="text">
+    <string>SET</string>
    </property>
   </widget>
   <zorder>background_key</zorder>
@@ -329,6 +350,7 @@
   <zorder>button_keyBack</zorder>
   <zorder>button_key1</zorder>
   <zorder>button_key2</zorder>
+  <zorder>button_keySet</zorder>
  </widget>
  <resources/>
  <connections/>

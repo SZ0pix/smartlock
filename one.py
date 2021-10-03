@@ -18,25 +18,27 @@ import logs
 import logslogging
 
 data = [0,0,999]
-photoPath="C:/Users/mjszo/Desktop/1/photos"
-uiPath="C:/Users/mjszo/Desktop/1"
+photoPath="C:/Users/mjszo/OneDrive/Pulpit/1/photos"
+uiPath="C:/Users/mjszo/OneDrive/Pulpit/1"
 
 Ui_AccessGranted, baseClass = uic.loadUiType(f"{uiPath}/access_granted.ui")
 Ui_Keyboard,baseClass = uic.loadUiType(f"{uiPath}/keyboard.ui")
 Ui_Start,baseClass = uic.loadUiType(f"{uiPath}/access.ui")
 Ui_ScreenSaver,baseClass = uic.loadUiType(f"{uiPath}/screensaver.ui")
+Ui_Settings,baseClass = uic.loadUiType(f"{uiPath}/settings.ui")
+Ui_Main,baseClass = uic.loadUiType(f"{uiPath}/main.ui")
 
-
-#logging.basicConfig(format="%(message)s", level=logging.INFO)
+logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 flags = qtc.Qt.WindowFlags(qtc.Qt.FramelessWindowHint | qtc.Qt.WindowStaysOnTopHint)
 
 logger2 = logging.getLogger(__name__)
 
-HEIGHT = 640                                                    #standard window size
-WIDTH = 1000
+HEIGHT = 600                                                    #standard window size
+WIDTH = 1024
 PASSCODE = '456322'                                             #password
-
+POSITION_X = 0
+POSITION_Y = 50
 endSig = qtc.pyqtSignal()
 
 
@@ -63,15 +65,22 @@ class MainWindow(qwt.QWidget):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         ## Start code here
+        #self.ui = Ui_Main()
+        #self.ui.setupUi(self)
+        #self.resize(WIDTH, HEIGHT)
+        #self.setWindowFlags(flags)
+        #self.move(POSITION_X, POSITION_Y)
+        #self.show()
         time.sleep(1)
         self.switch_to_first()
         self.runTask()
 
     def switch_to_first(self):
+
          self.first_window = FirstWindow()
          self.first_window.resize(WIDTH, HEIGHT)
          self.first_window.setWindowTitle('First')
-         self.first_window.move(0, 50)
+         self.first_window.move(POSITION_X,POSITION_Y)
          self.first_window.show()
 
     def screenSaver(self):
@@ -121,15 +130,18 @@ class FirstWindow(qwt.QWidget):
         self.switch_to_second()
 
     def switch_to_second(self):
+        #self.ui = Ui_Keyboard()
+        #self.ui.setupUi(self)
         self.second_window = SecondWindow()
-        self.second_window.move(0,50)
-        self.second_window.resize(WIDTH, HEIGHT)
         self.second_window.show()
+        self.second_window.move(POSITION_X,POSITION_Y)
+        self.second_window.resize(WIDTH, HEIGHT)
+        #time.sleep(2)
         self.close()
 
     def switch_to_saver(self):
         self.saver_window = ScreenSaver()
-        self.saver_window.move(0,50)
+        self.saver_window.move(POSITION_X,POSITION_Y)
         self.saver_window.resize(WIDTH, HEIGHT)
         self.saver_window.show()
         self.close()
@@ -154,6 +166,7 @@ class SecondWindow(qwt.QWidget):
         self.ui.button_key0.clicked.connect(lambda : self.push(0))
         self.ui.button_keyBack.clicked.connect(self.switch_to_first)
         self.ui.button_keyCancel.clicked.connect(self.cancel)
+        self.ui.button_keySet.clicked.connect(self.settings)
 
     def checkLabel(self):
         if (len(self.number)==0):
@@ -186,6 +199,13 @@ class SecondWindow(qwt.QWidget):
             self.number=''.join(temp_number)            #recreate string and sign it to self.number
             self.checkLabel()                           #update label
 
+    def settings(self):
+        self.settings_window = SettingsWindow()
+        self.settings_window.resize(WIDTH, HEIGHT)
+        self.settings_window.move(POSITION_X, POSITION_Y)
+        self.close()
+        self.settings_window.show()
+
 
         #var1=len(self.number)-1
         #temp_number = self.number
@@ -215,21 +235,21 @@ class SecondWindow(qwt.QWidget):
     def switch_to_first(self):                                  #go back to window 1
         self.first_window = FirstWindow()
         self.first_window.resize(WIDTH, HEIGHT)
-        self.first_window.move(0,50)
+        self.first_window.move(POSITION_X,POSITION_Y)
         self.first_window.show()
         self.close()
 
     def switch_to_third(self):
         self.third_window = ThirdWindow()
         self.third_window.resize(WIDTH, HEIGHT)
-        self.third_window.move(0,50)
+        self.third_window.move(POSITION_X,POSITION_Y)
         self.third_window.show()
         self.close()
 
     def switch_to_fourth(self):
         self.fourth_window = FourthWindow()
         self.fourth_window.resize(WIDTH, HEIGHT)
-        self.fourth_window.move(0,50)
+        self.fourth_window.move(POSITION_X,POSITION_Y)
         self.fourth_window.show()
         self.close()
 
@@ -242,6 +262,7 @@ class ThirdWindow(baseClass):
         self.ui.button_access.setFlat(True)
         self.ui.button_access.clicked.connect(self.stopTimer)              #or if button is pushed
         self.Win()
+        self.data=[2,999,0]
 
     def Win(self):
         self.ui.button_access.setText("ACCESS GRANTED")  # show message and after 4 sec go back
@@ -256,9 +277,9 @@ class ThirdWindow(baseClass):
 
     def switch_to_first(self):
         self.first_window = FirstWindow()
-        logslogging.writeLog2(data)
+        logslogging.writeLog2(self.data)
         self.first_window.resize(WIDTH, HEIGHT)
-        self.first_window.move(0,50)
+        self.first_window.move(POSITION_X,POSITION_Y)
         self.first_window.show()
         self.close()
 
@@ -267,6 +288,7 @@ class FourthWindow(ThirdWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.Win()
+        self.data = [0, 999, 0]
 
     def Win(self):
         self.ui.button_access.setText("ACCESS DENIED")  # show message and after 4 sec go back
@@ -281,12 +303,27 @@ class FourthWindow(ThirdWindow):
 
     def switch_to_first(self):
         self.first_window = FirstWindow()
-        #logslogging.writeLog2(data)
+        logslogging.writeLog2(self.data)
         self.first_window.resize(WIDTH, HEIGHT)
-        self.first_window.move(0, 50)
+        self.first_window.move(POSITION_X,POSITION_Y)
         self.first_window.show()
         self.close()
 
+
+class SettingsWindow(qwt.QWidget):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.ui = Ui_Settings()  # load UI form folder
+        self.ui.setupUi(self)
+        self.setWindowFlags(flags)  # get rid off frames
+        self.ui.button_setBack.clicked.connect(self.switch_to_second)
+
+    def switch_to_second(self):
+        self.second_window = SecondWindow()
+        self.second_window.move(POSITION_X,POSITION_Y)
+        self.second_window.resize(WIDTH, HEIGHT)
+        self.second_window.show()
+        self.close()
 
 class ScreenSaver(qwt.QWidget):
     timerVal=5000
@@ -323,7 +360,7 @@ class ScreenSaver(qwt.QWidget):
     def switch_to_first(self):
         self.first_window = FirstWindow()           #in case of touching one giant button for all window swithc to 1st
         self.first_window.resize(WIDTH, HEIGHT)
-        self.first_window.move(0, 50)
+        self.first_window.move(POSITION_X,POSITION_Y)
         self.first_window.show()
         self.close()
 
