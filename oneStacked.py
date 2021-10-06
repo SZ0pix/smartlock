@@ -89,6 +89,8 @@ class MainWindow(qwt.QWidget):
         self.runTask()
         time.sleep(0.5)
         self.show()
+
+
     @qtc.pyqtSlot(str,str)
     def printCurrentDataTime(self, time, date):
         self.ui.label_hour_start.setText(time)
@@ -111,6 +113,7 @@ class MainWindow(qwt.QWidget):
         runnalbe = SerialCom()
         runnalbe.signals.updateTimeSignal.connect(self.printCurrentDataTime)
         pool.start(runnalbe)
+
 
     #def runLongTask(self):
     #    self.thread = qtc.QThread()
@@ -150,13 +153,17 @@ class MainWindow(qwt.QWidget):
         self.ui.button_start.clicked.connect(self.goToKeyboard)
         self.ui.button_access.clicked.connect(self.stopTimer)
         self.ui.button_screen.clicked.connect(self.stopTMR3)
-
-
+        self.ui.button_setBack.clicked.connect(self.start)
+        self.ui.button_set2.clicked.connect(self.logs)
+        self.ui.button_logsBack.clicked.connect(self.start)
+        self.ui.slider_month.valueChanged.connect(self.updateLog)
 
     #@qtc.pyqtSlot(str)
     #def updateWidgetInGui(self, text):
     #    #self.ui.label_hour_start.setText(text)
     #    print(f'siema {text} elo')
+
+
 
     def start(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.access)
@@ -207,6 +214,27 @@ class MainWindow(qwt.QWidget):
     def settings(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.settings)
 
+
+    def updateLog(self):
+        months={1:"January" , 2:"February" , 3:"March" , 4:"April" , 5:"May" , 6:"June" , 7:"July", 8:"August",9:"September",10:"October",11:"November",12:"December"}
+        #print(months)
+        number=self.ui.slider_month.value()
+        searched_month=months[number]
+        print(searched_month)
+        try:
+            line=logslogging.readLog2(searched_month)
+            text = ""
+            for i in line:
+                text+=i+'\n'
+            self.ui.label.setText(text)
+            #print(text)
+
+        except:
+            self.ui.label.setText('ERROR: No logs found')
+
+    def logs(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.logs)
+        self.updateLog()
 
     def checkPassword(self):
         password_input=self.number

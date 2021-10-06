@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>600</height>
+    <width>1028</width>
+    <height>601</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -23,7 +29,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="keyboard">
     <widget class="QLabel" name="background_key">
@@ -541,7 +547,7 @@
     </widget>
    </widget>
    <widget class="QWidget" name="settings">
-    <widget class="QLabel" name="background_key_2">
+    <widget class="QLabel" name="background_set">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -583,7 +589,7 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_key1_2">
+    <widget class="QPushButton" name="button_set1">
      <property name="geometry">
       <rect>
        <x>81</x>
@@ -612,7 +618,7 @@
       <string>ENROLL</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_key6_2">
+    <widget class="QPushButton" name="button_set2">
      <property name="geometry">
       <rect>
        <x>81</x>
@@ -633,7 +639,7 @@
       <string>CHECK LOGS</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_key2_2">
+    <widget class="QPushButton" name="button_set3">
      <property name="geometry">
       <rect>
        <x>81</x>
@@ -673,6 +679,215 @@
      </property>
      <property name="text">
       <string>BACK</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="logs">
+    <widget class="QLabel" name="background_logs">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1024</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">frame-color:rgb(225, 225, 225);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>graphic/emoto2.png</pixmap>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_logsBack">
+     <property name="geometry">
+      <rect>
+       <x>763</x>
+       <y>380</y>
+       <width>180</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>BACK</string>
+     </property>
+    </widget>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>50</y>
+       <width>651</width>
+       <height>431</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget{ 
+	background-color:rgb(225, 225, 225); 
+	border:none;
+} 
+
+/*QScrollBar{ 
+	background-color:rgb(225, 225, 225); 
+} */
+
+/*HORIZONTAL SCROLL*/
+QScrollBar:vertical{
+	border: 10px;
+	bbackground-color: rgb(225, 225, 225);
+	width: 20px;
+	margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:vertical{
+	min-height: 200px;
+	border: 0px solid black;
+	border-radius: 10px;
+	background-color: rgb(146, 150, 150);
+}
+
+
+QScrollBar::add-line:vertical{
+	height: 0px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;	
+}
+
+QScrollBar::sub-line:vertical{
+	height: 0px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;	
+}
+
+QScrollBar::sub-page{
+	background-color: rgb(225, 225, 225);
+}
+
+QScrollBar::add-page{
+	background-color: rgb(225, 225, 225);
+}
+
+QAbstractScrollArea { background: black; }
+</string>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>651</width>
+        <height>431</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Calibri</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QSlider" name="slider_month">
+     <property name="geometry">
+      <rect>
+       <x>790</x>
+       <y>60</y>
+       <width>18</width>
+       <height>160</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>12</number>
+     </property>
+     <property name="value">
+      <number>9</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_year">
+     <property name="geometry">
+      <rect>
+       <x>920</x>
+       <y>80</y>
+       <width>18</width>
+       <height>160</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>2021</number>
+     </property>
+     <property name="maximum">
+      <number>2030</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+     <property name="value">
+      <number>2021</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="enroll">
+    <widget class="QLabel" name="background_enroll">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1024</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>graphic/emoto2.png</pixmap>
      </property>
     </widget>
    </widget>

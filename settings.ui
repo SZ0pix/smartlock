@@ -39,7 +39,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="button_key1">
+  <widget class="QPushButton" name="button_set1">
    <property name="geometry">
     <rect>
      <x>81</x>
@@ -68,7 +68,7 @@
     <string>ENROLL</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="button_key2">
+  <widget class="QPushButton" name="button_set3">
    <property name="geometry">
     <rect>
      <x>81</x>
@@ -89,7 +89,7 @@
     <string>VERIFY???</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="button_key6">
+  <widget class="QPushButton" name="button_set2">
    <property name="geometry">
     <rect>
      <x>81</x>
@@ -149,10 +149,10 @@
   </widget>
   <zorder>background_key</zorder>
   <zorder>label_set</zorder>
-  <zorder>button_key6</zorder>
+  <zorder>button_set2</zorder>
   <zorder>button_setBack</zorder>
-  <zorder>button_key1</zorder>
-  <zorder>button_key2</zorder>
+  <zorder>button_set1</zorder>
+  <zorder>button_set3</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -23,10 +23,22 @@ def writeLog2(data):
         elif (data[0] == 0 and data[1] == 999 and data[2] == 0):
             logger.info('Access denied. Wrong code')
         elif data[0] == 1:
-            logger.info("Access granted. Used userID={}\n".format(data[2]))
+            logger.info("Access granted. Used userID={}".format(data[2]))
         elif data[0] == 2:
-            logger.info("Access granted. Correct code\n")
+            logger.info("Access granted. Correct code")
         else:
             pass
     except:
         pass
+
+
+def readLog2(month):
+    try:
+        f = open("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogLogging-"+month+"{}.log".format(now.strftime(" 20%y")),'r')
+        line = f.read().splitlines()
+        print(len(line))
+        f.close()
+        return line
+    except:
+        com = 'NO LOGS FOUND'
+        return com
