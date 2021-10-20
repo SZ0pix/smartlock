@@ -16,6 +16,7 @@ import sys
 #python files
 import logs
 import logslogging
+import communication
 
 data = [0,0,999]
 photoPath="C:/Users/mjszo/OneDrive/Pulpit/1/photos"
@@ -157,11 +158,20 @@ class MainWindow(qwt.QWidget):
         self.ui.button_set2.clicked.connect(self.logs)
         self.ui.button_logsBack.clicked.connect(self.start)
         self.ui.slider_month.valueChanged.connect(self.updateLog)
-
+        self.ui.slider_year.valueChanged.connect(self.updateLog)
+        self.ui.button_set1.clicked.connect(self.start_enroll)
     #@qtc.pyqtSlot(str)
     #def updateWidgetInGui(self, text):
     #    #self.ui.label_hour_start.setText(text)
     #    print(f'siema {text} elo')
+
+
+
+    def start_enroll(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.enroll)
+        self.ui.instruction.setText(communication.analize())
+
+
 
 
 
@@ -178,7 +188,6 @@ class MainWindow(qwt.QWidget):
         self.checkLabel()
         self.ui.stackedWidget.setCurrentWidget(self.ui.keyboard)
         self.tmr4.stop()
-
 
     def checkLabel(self):
         if (len(self.number)==0):
@@ -214,23 +223,22 @@ class MainWindow(qwt.QWidget):
     def settings(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.settings)
 
-
     def updateLog(self):
         months={1:"January" , 2:"February" , 3:"March" , 4:"April" , 5:"May" , 6:"June" , 7:"July", 8:"August",9:"September",10:"October",11:"November",12:"December"}
-        #print(months)
         number=self.ui.slider_month.value()
         searched_month=months[number]
-        print(searched_month)
         try:
-            line=logslogging.readLog2(searched_month)
+            line=logslogging.readLog2(searched_month,self.ui.slider_year.value())
             text = ""
             for i in line:
                 text+=i+'\n'
             self.ui.label.setText(text)
-            #print(text)
+            self.ui.current_date_log.setText(f"{searched_month}.{self.ui.slider_year.value()}")
 
         except:
-            self.ui.label.setText('ERROR: No logs found')
+            text="ERROR: NO LOGS FOUND FOR THIS MONTH"
+            self.ui.label.setText(text)
+            self.ui.current_date_log.setText(f"{searched_month}.{self.ui.slider_year.value()}")
 
     def logs(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.logs)
@@ -242,7 +250,6 @@ class MainWindow(qwt.QWidget):
             self.switch_to_third()
         elif ((len(password_input) == 6) and (password_input != PASSCODE)):
             self.switch_to_fourth()
-
 
     def switch_to_fourth(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.access_granted)

@@ -32,13 +32,11 @@ def writeLog2(data):
         pass
 
 
-def readLog2(month):
+def readLog2(month,year):
     try:
-        f = open("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogLogging-"+month+"{}.log".format(now.strftime(" 20%y")),'r')
+        f = open("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogLogging-"+month+" {}.log".format(str(year)),'r')
         line = f.read().splitlines()
-        print(len(line))
         f.close()
         return line
     except:
-        com = 'NO LOGS FOUND'
-        return com
+        pass
