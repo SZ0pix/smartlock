@@ -10,6 +10,12 @@
     <height>601</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>0</width>
@@ -980,7 +986,7 @@ QSlider::sub-page:vertical {
     <widget class="QLabel" name="background_enroll">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>40</x>
        <y>0</y>
        <width>1024</width>
        <height>600</height>
@@ -993,7 +999,7 @@ QSlider::sub-page:vertical {
       <pixmap>graphic/emoto2.png</pixmap>
      </property>
     </widget>
-    <widget class="QLabel" name="instruction">
+    <widget class="QLabel" name="label_instruction">
      <property name="geometry">
       <rect>
        <x>12</x>
@@ -1016,6 +1022,889 @@ QSlider::sub-page:vertical {
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_Break">
+     <property name="geometry">
+      <rect>
+       <x>780</x>
+       <y>390</y>
+       <width>180</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>BACK</string>
+     </property>
+    </widget>
+    <widget class="QScrollArea" name="scrollArea_2">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>200</y>
+       <width>861</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget{ 
+	background-color:rgb(225, 225, 225); 
+	border:none;
+} 
+
+/*QScrollBar{ 
+	background-color:rgb(225, 225, 225); 
+} */
+
+/*HORIZONTAL SCROLL*/
+QScrollBar:vertical{
+	border: 10px;
+	background-color: rgb(225, 225, 225);
+	width: 20px;
+	margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:horizontal{
+	min-height: 20px;
+	border: 0px solid black;
+	border-radius: 8px;
+	background-color: rgb(146, 150, 150);
+}
+
+
+QScrollBar::add-line:horizontal{
+	height: 0px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;	
+}
+
+QScrollBar::sub-line:horizontal{
+	height: 0px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;	
+}
+
+QScrollBar::sub-page{
+	background-color: rgb(225, 225, 225);
+}
+
+QScrollBar::add-page{
+	background-color: rgb(225, 225, 225);
+}
+
+QAbstractScrollArea { background: black; }
+</string>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="letterKeyboard">
+      <property name="geometry">
+       <rect>
+        <x>-176</x>
+        <y>0</y>
+        <width>2450</width>
+        <height>164</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="button_A">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>A</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_B">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>B</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_C">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>C</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_D">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>D</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_E">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>E</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_F">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>F</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_G">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>G</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_H">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>H</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_I">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>I</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_J">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>J</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_K">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>K</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_L">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>L</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_M">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>M</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_N">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>N</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_O">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>O</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_P">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>P</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_R">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>R</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_S">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>S</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_T">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>T</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_U">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>U</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_W">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>W</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_Y">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>Y</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_Z">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">	border-style: solid;
+	border-color: rgb(146,150,150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
+</string>
+         </property>
+         <property name="text">
+          <string>Z</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_instruction_2">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>120</y>
+       <width>651</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-color: rgb(146, 150, 150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_Break_2">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>390</y>
+       <width>180</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>←</string>
      </property>
     </widget>
    </widget>

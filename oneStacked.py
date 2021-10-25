@@ -18,7 +18,7 @@ import logs
 import logslogging
 import communication
 
-data = [0,0,999]
+data = [9,3,0]
 photoPath="C:/Users/mjszo/OneDrive/Pulpit/1/photos"
 uiPath="C:/Users/mjszo/OneDrive/Pulpit/1"
 
@@ -29,22 +29,21 @@ logging.basicConfig(format="%(message)s", level=logging.INFO)
 flags = qtc.Qt.WindowFlags(qtc.Qt.FramelessWindowHint | qtc.Qt.WindowStaysOnTopHint)
 
 logger2 = logging.getLogger(__name__)
-
+data = [9, 3, 0]
 HEIGHT = 600                                                    #standard window size
 WIDTH = 1024
 PASSCODE = '456322'                                             #password
 POSITION_X = 0
 POSITION_Y = 50
 
-
 class WorkerSignals(qtc.QObject):
     updateTimeSignal = qtc.pyqtSignal(str,str)
+    incomingDataSignal = qtc.pyqtSignal(int)
 
 class SerialCom(qtc.QRunnable):
     def __init__(self):
         super().__init__()
         self.signals = WorkerSignals()
-
 
     def run(self):
         i = 0
@@ -52,10 +51,8 @@ class SerialCom(qtc.QRunnable):
             i += 1
             time.sleep(1)
             logger2.warning(f"Mamy {i}")
-
             self.update_date = datetime.datetime.today().strftime('%A, %d.%m')
             self.update_time = datetime.datetime.today().strftime('%H:%M:%S')
-
             self.signals.updateTimeSignal.emit(self.update_time, self.update_date)
 
             #self.updateWidgets.emit(self.update_time)
@@ -67,6 +64,21 @@ class SerialCom(qtc.QRunnable):
         #self.finished.emit()
 
 
+class Worker2(qtc.QRunnable):
+    def __init__(self):
+        super().__init__()
+        self.signals = WorkerSignals()
+
+    def run(self):
+        while(True):
+            number = input()
+            try:
+                data=int(number)
+                self.signals.incomingDataSignal.emit(data)
+            except:
+                pass
+            print(data)
+            logger2.warning(f"poprzedni imput{number}")
 
 class MainWindow(qwt.QWidget):
     def __init__(self, *args, **kwargs):
@@ -85,12 +97,13 @@ class MainWindow(qwt.QWidget):
         self.initiate()
         self.ui.button_start.setText("PRESS TO START")
 
-
+        #worke.signals.incomingDataSignal.connect(MainWindow.trigerchange)
         #self.switch_to_firstXD()
         self.runTask()
         time.sleep(0.5)
         self.show()
 
+        #self.signals.incomingDataSignal.connect(MainWindow.trigerchange)
 
     @qtc.pyqtSlot(str,str)
     def printCurrentDataTime(self, time, date):
@@ -99,6 +112,18 @@ class MainWindow(qwt.QWidget):
         #self.ui.label_date_start.setText(time)
     # self.ui.label_hour_start.setText(text)
     #    print(f'siema {text} elo')
+
+    @qtc.pyqtSlot(int)
+    def trigerchange(self, d):
+        logger2.warning(f"elemele {d}")
+        data[1]=d
+        dupa=communication.analize(data)
+        print(type(dupa))
+        print(dupa)
+        self.ui.label_instruction.setText(dupa)
+
+    #@qtc.pyqtSlot(int)
+    #def incomin
 
   #  def switch_to_firstXD(self):#
 #
@@ -112,8 +137,12 @@ class MainWindow(qwt.QWidget):
     def runTask(self):
         pool = qtc.QThreadPool.globalInstance()
         runnalbe = SerialCom()
+        worke = Worker2()
         runnalbe.signals.updateTimeSignal.connect(self.printCurrentDataTime)
+        worke.signals.incomingDataSignal.connect(self.trigerchange)
+        pool.start(worke)
         pool.start(runnalbe)
+
 
 
     #def runLongTask(self):
@@ -160,6 +189,7 @@ class MainWindow(qwt.QWidget):
         self.ui.slider_month.valueChanged.connect(self.updateLog)
         self.ui.slider_year.valueChanged.connect(self.updateLog)
         self.ui.button_set1.clicked.connect(self.start_enroll)
+        self.ui.button_Break.clicked.connect(self.break_enroll)
     #@qtc.pyqtSlot(str)
     #def updateWidgetInGui(self, text):
     #    #self.ui.label_hour_start.setText(text)
@@ -169,10 +199,21 @@ class MainWindow(qwt.QWidget):
 
     def start_enroll(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.enroll)
-        self.ui.instruction.setText(communication.analize())
+        communication.startenroll()
+        self.enroll()
+        self.tmr6 = qtc.QTimer()  # one shot timer for 4 seconds
+        self.tmr6.setSingleShot(True)
+        self.tmr6.timeout.connect(self.break_enroll)
+        self.tmr6.start(30000)
 
+    def enroll(self):
+        print('Hi')
+        communication.analize(data)
 
-
+    def break_enroll(self):
+        self.tmr6.stop()
+        communication.stopenroll()
+        self.start()
 
 
     def start(self):
@@ -349,6 +390,7 @@ if __name__ == '__main__':
 
     app = qwt.QApplication(sys.argv)
     w = MainWindow()
+
     sys.exit(app.exec_())                                        #starts eventloop
     #dane = [0, 0, 999]
     #print('doszliśmy')
