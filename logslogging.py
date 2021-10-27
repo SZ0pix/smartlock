@@ -13,13 +13,14 @@ now = datetime.datetime.now()
 f_handlerEntries = logging.FileHandler("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogLogging-{}.log".format(now.strftime("%B 20%y")))
 f_handlerEntries.setLevel(logging.INFO)
 
-f_handlerEnroll = logging.FileHandler("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogUsers".format(now.strftime("%B 20%y")))
+f_handlerEnroll = logging.FileHandler("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogUsers.log".format(now.strftime("%B 20%y")))
 f_handlerEnroll.setLevel(logging.INFO)
 #create formatter for handler
 
 f_format = logging.Formatter('%(asctime)s - %(message)s')
+f2_format = logging.Formatter('%(asctime)s   %(message)s')
 f_handlerEntries.setFormatter(f_format)
-f_handlerEnroll.setFormatter(f_format)
+f_handlerEnroll.setFormatter(f2_format)
 
 #add handler to logger
 loggerEntries.addHandler(f_handlerEntries)
@@ -40,6 +41,17 @@ def writeLog2(data):
     except:
         pass
 
+def writeNames(id,name):
+    try:
+        if (len(str(id))==1):
+            loggerEnroll.info(f'USER:00{id} - {name}')
+        elif (len(str(id))==2):
+            loggerEnroll.info(f'USER:0{id} - {name}')
+        else:
+            loggerEnroll.info(f'USER:{id} - {name}')
+
+    except:
+        pass
 
 #def writeEnrollLog(id, imie):
     #try:

@@ -120,7 +120,12 @@ class MainWindow(qwt.QWidget):
         dupa=communication.analize(data)
         print(type(dupa))
         print(dupa)
-        self.ui.label_instruction.setText(dupa)
+        self.ui.label_instruction_enroll.setText(dupa)
+        if (data[1]==4):
+            self.fill()
+        else:
+            print(data)
+            print("TTTTTTTTTTTTTTTTTTTTTTTTTTTt")
 
     #@qtc.pyqtSlot(int)
     #def incomin
@@ -189,16 +194,41 @@ class MainWindow(qwt.QWidget):
         self.ui.slider_month.valueChanged.connect(self.updateLog)
         self.ui.slider_year.valueChanged.connect(self.updateLog)
         self.ui.button_set1.clicked.connect(self.start_enroll)
-        self.ui.button_Break.clicked.connect(self.break_enroll)
-    #@qtc.pyqtSlot(str)
-    #def updateWidgetInGui(self, text):
-    #    #self.ui.label_hour_start.setText(text)
-    #    print(f'siema {text} elo')
 
-
+        self.ui.button_finish_enroll.clicked.connect(self.finish_enroll)
+        self.ui.button_clear_enroll.clicked.connect(self.cancel2)
+        self.ui.button_break_enroll.clicked.connect(self.break_enroll)
+        self.ui.button_A.clicked.connect(lambda: self.push2('A'))
+        self.ui.button_B.clicked.connect(lambda: self.push2('B'))
+        self.ui.button_C.clicked.connect(lambda: self.push2('C'))
+        self.ui.button_D.clicked.connect(lambda: self.push2('D'))
+        self.ui.button_E.clicked.connect(lambda: self.push2('E'))
+        self.ui.button_F.clicked.connect(lambda: self.push2('F'))
+        self.ui.button_G.clicked.connect(lambda: self.push2('G'))
+        self.ui.button_H.clicked.connect(lambda: self.push2('H'))
+        self.ui.button_I.clicked.connect(lambda: self.push2('I'))
+        self.ui.button_J.clicked.connect(lambda: self.push2('J'))
+        self.ui.button_K.clicked.connect(lambda: self.push2('K'))
+        self.ui.button_L.clicked.connect(lambda: self.push2('L'))
+        self.ui.button_M.clicked.connect(lambda: self.push2('M'))
+        self.ui.button_N.clicked.connect(lambda: self.push2('N'))
+        self.ui.button_O.clicked.connect(lambda: self.push2('O'))
+        self.ui.button_P.clicked.connect(lambda: self.push2('P'))
+        self.ui.button_R.clicked.connect(lambda: self.push2('R'))
+        self.ui.button_S.clicked.connect(lambda: self.push2('S'))
+        self.ui.button_T.clicked.connect(lambda: self.push2('T'))
+        self.ui.button_U.clicked.connect(lambda: self.push2('U'))
+        self.ui.button_W.clicked.connect(lambda: self.push2('W'))
+        self.ui.button_Y.clicked.connect(lambda: self.push2('Y'))
+        self.ui.button_Z.clicked.connect(lambda: self.push2('Z'))
+        self.ui.button_Space.clicked.connect(lambda: self.push2(' '))
 
     def start_enroll(self):
+        self.ui.label_data_enroll.setVisible(False)
+        self.ui.scrollArea_2.setVisible(False)
         self.ui.stackedWidget.setCurrentWidget(self.ui.enroll)
+        self.name = ''
+        self.checkName()
         communication.startenroll()
         self.enroll()
         self.tmr6 = qtc.QTimer()  # one shot timer for 4 seconds
@@ -213,6 +243,12 @@ class MainWindow(qwt.QWidget):
     def break_enroll(self):
         self.tmr6.stop()
         communication.stopenroll()
+        self.start()
+
+    def finish_enroll(self):
+        id = 113
+        name=self.name
+        logslogging.writeNames(id,name)
         self.start()
 
 
@@ -246,12 +282,31 @@ class MainWindow(qwt.QWidget):
         elif (len(self.number)>=6):
             self.ui.label_key.setText("X X X X X X")
 
+    def checkName(self):
+        if (len(self.name)==0):
+            self.ui.label_data_enroll.setText("YOUR NAME")  # show message and after 4 sec go back
+        else:
+            self.ui.label_data_enroll.setText(self.name)
+
     def push(self,sign):
         if (len(self.number)<=5):
             self.number += str(sign)
             print(self.number)
             self.checkLabel()
             self.checkPassword()
+
+    def fill(self):
+        print("SSS")
+        self.ui.label_data_enroll.setVisible(True)
+        self.ui.scrollArea_2.setVisible(True)
+
+
+    def push2(self,sign):
+        if (len(self.name) <= 30):
+            self.name += str(sign)
+            print(self.name)
+            self.checkName()
+
 
     def cancel(self):
         if (len(self.number)>=1):
@@ -260,6 +315,14 @@ class MainWindow(qwt.QWidget):
             temp_number[var1]=''                        #set last cell in list as nothing
             self.number=''.join(temp_number)            #recreate string and sign it to self.number
             self.checkLabel()                           #update label
+
+    def cancel2(self):
+        if (len(self.name)>=1):
+            temp_name=list(self.name)               #create list that is equal to current input
+            var2 = len(self.name) - 1                 #check length
+            temp_name[var2]=''                        #set last cell in list as nothing
+            self.name=''.join(temp_name)            #recreate string and sign it to self.number
+            self.checkName()                           #update label
 
     def settings(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.settings)

@@ -1,5 +1,6 @@
 import datetime
 import logging
+import oneStacked
 
 #create logger
 logger = logging.getLogger(__name__)
@@ -38,7 +39,7 @@ def analize(data):
             #print('##Remove')
             return (return_text)
         elif (data[0] == 9 and data[1] == 4):
-            return_text = f'Enroll succesfull. Id {data[2]}'
+            return_text = f'Enroll succesfull. Id {data[2]} Fill your name and press FINISH'
             #print(f'##Enroll succesfull. Id {data[2]}')
             return (return_text)
         elif (data[0] == 9 and data[1] == 5 and data[2] == 0):
@@ -61,6 +62,9 @@ def analize(data):
             pass
     except:
         pass
+
+
+
 
 def readLog2(month,year):
     try:
