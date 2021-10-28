@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1028</width>
+    <width>858</width>
     <height>601</height>
    </rect>
   </property>
@@ -35,9 +35,9 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>6</number>
+    <number>7</number>
    </property>
-   <widget class="QWidget" name="keyboard">
+   <widget class="QWidget" name="keyboard_key">
     <widget class="QLabel" name="background_key">
      <property name="geometry">
       <rect>
@@ -298,7 +298,7 @@
       <string>8</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_keyCancel">
+    <widget class="QPushButton" name="button_cancel_key">
      <property name="geometry">
       <rect>
        <x>763</x>
@@ -319,7 +319,7 @@
       <string>CLEAR</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_keyBack">
+    <widget class="QPushButton" name="button_back_key">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -342,38 +342,7 @@
       <string>←</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_keySetww">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>500</y>
-       <width>341</width>
-       <height>100</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">	border-style: solid;
-	border-width: 3px;
-	border-radius: 16px;
-	color: rgb(146, 150, 150);
-	font: 300 24pt &quot;Calibri Light&quot;;
-	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
-     </property>
-     <property name="text">
-      <string>SET</string>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="textEdit">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>420</y>
-       <width>104</width>
-       <height>64</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="button_keySet">
+    <widget class="QPushButton" name="button_set_key">
      <property name="geometry">
       <rect>
        <x>910</x>
@@ -393,11 +362,21 @@
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>△</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>graphic/setting2.png</normaloff>graphic/setting2.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>70</width>
+       <height>70</height>
+      </size>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="screensaver">
+   <widget class="QWidget" name="screensaver_screen">
     <widget class="QLabel" name="background_screen">
      <property name="geometry">
       <rect>
@@ -630,7 +609,7 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_set1">
+    <widget class="QPushButton" name="button_1_set">
      <property name="geometry">
       <rect>
        <x>81</x>
@@ -659,7 +638,7 @@
       <string>ENROLL</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_set2">
+    <widget class="QPushButton" name="button_2_set">
      <property name="geometry">
       <rect>
        <x>81</x>
@@ -680,7 +659,7 @@
       <string>CHECK LOGS</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_set3">
+    <widget class="QPushButton" name="button_3_set">
      <property name="geometry">
       <rect>
        <x>81</x>
@@ -698,10 +677,10 @@
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>VERIFY???</string>
+      <string>SET LOCK DELAY</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_setBack">
+    <widget class="QPushButton" name="button_back_set">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -722,6 +701,27 @@
      </property>
      <property name="text">
       <string>←</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_4_set">
+     <property name="geometry">
+      <rect>
+       <x>81</x>
+       <y>430</y>
+       <width>500</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>GENERATE NEW CODE</string>
      </property>
     </widget>
    </widget>
@@ -745,7 +745,7 @@
       <pixmap>graphic/emoto2.png</pixmap>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_logsBack">
+    <widget class="QPushButton" name="button_back_logs">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -846,7 +846,7 @@ QAbstractScrollArea { background: black; }
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="label_logs">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -882,7 +882,7 @@ QAbstractScrollArea { background: black; }
       </layout>
      </widget>
     </widget>
-    <widget class="QSlider" name="slider_year">
+    <widget class="QSlider" name="slider_year_logs">
      <property name="geometry">
       <rect>
        <x>883</x>
@@ -932,7 +932,7 @@ QSlider::sub-page:vertical {
       <enum>Qt::Vertical</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="current_date_log">
+    <widget class="QLabel" name="current_date_logs">
      <property name="geometry">
       <rect>
        <x>750</x>
@@ -957,7 +957,7 @@ QSlider::sub-page:vertical {
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QSlider" name="slider_month">
+    <widget class="QSlider" name="slider_month_logs">
      <property name="geometry">
       <rect>
        <x>793</x>
@@ -1138,7 +1138,7 @@ QAbstractScrollArea { background: black; }
      <widget class="QWidget" name="letterKeyboard">
       <property name="geometry">
        <rect>
-        <x>-1695</x>
+        <x>0</x>
         <y>0</y>
         <width>2556</width>
         <height>164</height>
@@ -1989,6 +1989,140 @@ QAbstractScrollArea { background: black; }
      </property>
      <property name="text">
       <string>FINISH</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="delay">
+    <widget class="QLabel" name="background_delay">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1024</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">frame-color:rgb(225, 225, 225);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>graphic/emoto2.png</pixmap>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_back_delay">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>100</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	border-color: rgb(225,225,225);
+	color: rgb(146, 150, 150);
+	font: 300 60pt &quot;Calibri Light&quot; ;
+	font-weight: bold;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>←</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="current_delay">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>190</y>
+       <width>331</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-color: rgb(146, 150, 150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>CURRENT VALUE</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_set_delay">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>350</y>
+       <width>180</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 24pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>SET</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_delay">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>200</y>
+       <width>331</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
+    background: rgb(225,225,225);
+    position: absolute; /* absolutely position 4px from the left and right of the widget. setting margins on the widget should work too... */
+    top: 25px; bottom: 25px;
+	
+}
+
+QSlider::handle:horizontal {
+    height: 27px;
+	width:27px;
+    background: rgb(225,225,225);
+	border-radius: 15px;
+	border:2px solid rgb(146,150,150);
+	margin: -12px 0px;
+}
+
+QSlider::add-page:horizontal {
+    background: rgb(146,150,150);
+}
+
+QSlider::sub-page:horizontal {
+    background: rgb(146,150,150);
+}</string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>5</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </widget>

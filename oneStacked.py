@@ -22,6 +22,8 @@ data = [9,3,0]
 photoPath="C:/Users/mjszo/OneDrive/Pulpit/1/photos"
 uiPath="C:/Users/mjszo/OneDrive/Pulpit/1"
 
+
+
 Ui_Stacked,baseClass = uic.loadUiType(f"{uiPath}/stacked.ui")
 
 logging.basicConfig(format="%(message)s", level=logging.INFO)
@@ -69,6 +71,7 @@ class Worker2(qtc.QRunnable):
         super().__init__()
         self.signals = WorkerSignals()
 
+
     def run(self):
         while(True):
             number = input()
@@ -83,7 +86,7 @@ class Worker2(qtc.QRunnable):
 class MainWindow(qwt.QWidget):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        #self.pixmap_key = qtg.QIcon("C:/Users/mjszo/OneDrive/Pulpit/1/graphic/setting.png")
 
         self.ui = Ui_Stacked()
         self.ui.setupUi(self)
@@ -182,18 +185,24 @@ class MainWindow(qwt.QWidget):
         self.ui.button_key8.clicked.connect(lambda: self.push(8))
         self.ui.button_key9.clicked.connect(lambda: self.push(9))
         self.ui.button_key0.clicked.connect(lambda: self.push(0))
-        self.ui.button_keyBack.clicked.connect(self.start)
-        self.ui.button_keyCancel.clicked.connect(self.cancel)
-        self.ui.button_keySet.clicked.connect(self.settings)
+        self.ui.button_back_key.clicked.connect(self.start)
+        self.ui.button_cancel_key.clicked.connect(self.cancel)
+        self.ui.button_set_key.clicked.connect(self.settings)
         self.ui.button_start.clicked.connect(self.goToKeyboard)
         self.ui.button_access.clicked.connect(self.stopTimer)
         self.ui.button_screen.clicked.connect(self.stopTMR3)
-        self.ui.button_setBack.clicked.connect(self.start)
-        self.ui.button_set2.clicked.connect(self.logs)
-        self.ui.button_logsBack.clicked.connect(self.start)
-        self.ui.slider_month.valueChanged.connect(self.updateLog)
-        self.ui.slider_year.valueChanged.connect(self.updateLog)
-        self.ui.button_set1.clicked.connect(self.start_enroll)
+        self.ui.button_back_set.clicked.connect(self.start)
+        self.ui.button_2_set.clicked.connect(self.logs)
+        self.ui.button_back_logs.clicked.connect(self.start)
+        self.ui.slider_month_logs.valueChanged.connect(self.updateLog)
+        self.ui.slider_year_logs.valueChanged.connect(self.updateLog)
+        self.ui.button_1_set.clicked.connect(self.start_enroll)
+        self.ui.button_3_set.clicked.connect(self.setdelay)
+        self.ui.button_4_set.clicked.connect(self.generate)
+        self.ui.button_set_delay.clicked.connect(self.senddelay)
+        self.ui.slider_delay.valueChanged.connect(self.setdelay)
+        self.ui.button_back_delay.clicked.connect(self.settings)
+
 
         self.ui.button_finish_enroll.clicked.connect(self.finish_enroll)
         self.ui.button_clear_enroll.clicked.connect(self.cancel2)
@@ -223,6 +232,17 @@ class MainWindow(qwt.QWidget):
         self.ui.button_Z.clicked.connect(lambda: self.push2('Z'))
         self.ui.button_Space.clicked.connect(lambda: self.push2(' '))
 
+    def generate(self):
+        pass
+
+    def setdelay(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.delay)
+        value = self.ui.slider_delay.value()
+        self.ui.current_delay.setText(f"CURRENT VALUE: {value}s")
+
+    def senddelay(self):
+        pass
+
     def start_enroll(self):
         self.ui.label_data_enroll.setVisible(False)
         self.ui.scrollArea_2.setVisible(False)
@@ -251,7 +271,6 @@ class MainWindow(qwt.QWidget):
         logslogging.writeNames(id,name)
         self.start()
 
-
     def start(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.access)
         self.tmr4 = qtc.QTimer()  # one shot timer for 4 seconds
@@ -263,7 +282,8 @@ class MainWindow(qwt.QWidget):
     def goToKeyboard(self):
         self.number = ''
         self.checkLabel()
-        self.ui.stackedWidget.setCurrentWidget(self.ui.keyboard)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.keyboard_key)
+        #self.ui.button_set_key.setIcon(self.pixmap_key)
         self.tmr4.stop()
 
     def checkLabel(self):
@@ -300,13 +320,11 @@ class MainWindow(qwt.QWidget):
         self.ui.label_data_enroll.setVisible(True)
         self.ui.scrollArea_2.setVisible(True)
 
-
     def push2(self,sign):
         if (len(self.name) <= 30):
             self.name += str(sign)
             print(self.name)
             self.checkName()
-
 
     def cancel(self):
         if (len(self.number)>=1):
@@ -329,20 +347,20 @@ class MainWindow(qwt.QWidget):
 
     def updateLog(self):
         months={1:"January" , 2:"February" , 3:"March" , 4:"April" , 5:"May" , 6:"June" , 7:"July", 8:"August",9:"September",10:"October",11:"November",12:"December"}
-        number=self.ui.slider_month.value()
+        number=self.ui.slider_month_logs.value()
         searched_month=months[number]
         try:
-            line=logslogging.readLog2(searched_month,self.ui.slider_year.value())
+            line=logslogging.readLog2(searched_month,self.ui.slider_year_logs.value())
             text = ""
             for i in line:
                 text+=i+'\n'
-            self.ui.label.setText(text)
-            self.ui.current_date_log.setText(f"{searched_month}.{self.ui.slider_year.value()}")
+            self.ui.label_logs.setText(text)
+            self.ui.current_date_logs.setText(f"{searched_month}.{self.ui.slider_year_logs.value()}")
 
         except:
             text="ERROR: NO LOGS FOUND FOR THIS MONTH"
-            self.ui.label.setText(text)
-            self.ui.current_date_log.setText(f"{searched_month}.{self.ui.slider_year.value()}")
+            self.ui.label_logs.setText(text)
+            self.ui.current_date_logs.setText(f"{searched_month}.{self.ui.slider_year_logs.value()}")
 
     def logs(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.logs)
@@ -400,7 +418,7 @@ class MainWindow(qwt.QWidget):
     def switch_to_saver(self):
         self.timerVal = 1000
         HELPVAR=False
-        self.ui.stackedWidget.setCurrentWidget(self.ui.screensaver)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.screensaver_screen)
 
         self.tmr3 = qtc.QTimer()  # one shot timer for 4 seconds#
         self.tmr3.setSingleShot(True)  # start timer and in case of timeout change photo
