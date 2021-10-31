@@ -17,6 +17,7 @@ import sys
 import logs
 import logslogging
 import communication
+import passwords
 
 data = [9,3,0]
 photoPath="C:/Users/mjszo/OneDrive/Pulpit/1/photos"
@@ -34,7 +35,7 @@ logger2 = logging.getLogger(__name__)
 data = [9, 3, 0]
 HEIGHT = 600                                                    #standard window size
 WIDTH = 1024
-PASSCODE = '456322'                                             #password
+#PASSCODE = '4563'                                             #password
 POSITION_X = 0
 POSITION_Y = 50
 
@@ -199,9 +200,11 @@ class MainWindow(qwt.QWidget):
         self.ui.button_1_set.clicked.connect(self.start_enroll)
         self.ui.button_3_set.clicked.connect(self.setdelay)
         self.ui.button_4_set.clicked.connect(self.generate)
+        self.ui.button_5_set.clicked.connect(self.check_current_password)
         self.ui.button_set_delay.clicked.connect(self.senddelay)
         self.ui.slider_delay.valueChanged.connect(self.setdelay)
         self.ui.button_back_delay.clicked.connect(self.settings)
+        self.ui.button_back_current.clicked.connect(self.settings)
 
 
         self.ui.button_finish_enroll.clicked.connect(self.finish_enroll)
@@ -233,7 +236,12 @@ class MainWindow(qwt.QWidget):
         self.ui.button_Space.clicked.connect(lambda: self.push2(' '))
 
     def generate(self):
-        pass
+        passwords.newpass()
+
+    def check_current_password(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.current_password)
+        current_password=passwords.check_current()
+        self.ui.label_current_password.setText("CURRENT PASSWORD: "+current_password)
 
     def setdelay(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.delay)
@@ -292,15 +300,15 @@ class MainWindow(qwt.QWidget):
         elif (len(self.number)==1):
             self.ui.label_key.setText("X")
         elif (len(self.number)==2):
-            self.ui.label_key.setText("X X")
+            self.ui.label_key.setText("X  X")
         elif (len(self.number)==3):
-            self.ui.label_key.setText("X X X")
+            self.ui.label_key.setText("X  X  X")
         elif (len(self.number)==4):
-            self.ui.label_key.setText("X X X X")
-        elif (len(self.number)==5):
-            self.ui.label_key.setText("X X X X X")
-        elif (len(self.number)>=6):
-            self.ui.label_key.setText("X X X X X X")
+            self.ui.label_key.setText("X  X  X  X")
+        #elif (len(self.number)==5):
+        #    self.ui.label_key.setText("X X X X X")
+        #elif (len(self.number)>=6):
+        #    self.ui.label_key.setText("X X X X X X")
 
     def checkName(self):
         if (len(self.name)==0):
@@ -309,7 +317,7 @@ class MainWindow(qwt.QWidget):
             self.ui.label_data_enroll.setText(self.name)
 
     def push(self,sign):
-        if (len(self.number)<=5):
+        if (len(self.number)<=3):
             self.number += str(sign)
             print(self.number)
             self.checkLabel()
@@ -368,9 +376,10 @@ class MainWindow(qwt.QWidget):
 
     def checkPassword(self):
         password_input=self.number
-        if (password_input == (PASSCODE)):
+        self.PASSCODE = passwords.check_current()
+        if (password_input == (self.PASSCODE)):
             self.switch_to_third()
-        elif ((len(password_input) == 6) and (password_input != PASSCODE)):
+        elif ((len(password_input) == 4) and (password_input != self.PASSCODE)):
             self.switch_to_fourth()
 
     def switch_to_fourth(self):

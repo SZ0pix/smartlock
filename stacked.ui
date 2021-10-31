@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>858</width>
+    <width>1030</width>
     <height>601</height>
    </rect>
   </property>
@@ -586,9 +586,9 @@
     <widget class="QLabel" name="label_set">
      <property name="geometry">
       <rect>
-       <x>195</x>
+       <x>155</x>
        <y>30</y>
-       <width>634</width>
+       <width>721</width>
        <height>71</height>
       </rect>
      </property>
@@ -612,9 +612,9 @@
     <widget class="QPushButton" name="button_1_set">
      <property name="geometry">
       <rect>
-       <x>81</x>
+       <x>20</x>
        <y>130</y>
-       <width>500</width>
+       <width>480</width>
        <height>71</height>
       </rect>
      </property>
@@ -641,9 +641,9 @@
     <widget class="QPushButton" name="button_2_set">
      <property name="geometry">
       <rect>
-       <x>81</x>
+       <x>20</x>
        <y>230</y>
-       <width>500</width>
+       <width>480</width>
        <height>71</height>
       </rect>
      </property>
@@ -662,9 +662,9 @@
     <widget class="QPushButton" name="button_3_set">
      <property name="geometry">
       <rect>
-       <x>81</x>
+       <x>20</x>
        <y>330</y>
-       <width>500</width>
+       <width>480</width>
        <height>71</height>
       </rect>
      </property>
@@ -706,9 +706,9 @@
     <widget class="QPushButton" name="button_4_set">
      <property name="geometry">
       <rect>
-       <x>81</x>
+       <x>10</x>
        <y>430</y>
-       <width>500</width>
+       <width>490</width>
        <height>71</height>
       </rect>
      </property>
@@ -721,7 +721,28 @@
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>GENERATE NEW CODE</string>
+      <string>NEW PASSCODE</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_5_set">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>430</y>
+       <width>490</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>LATEST PASSCODE</string>
      </property>
     </widget>
    </widget>
@@ -771,10 +792,10 @@
     <widget class="QScrollArea" name="scrollArea">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>70</y>
-       <width>621</width>
-       <height>411</height>
+       <x>20</x>
+       <y>110</y>
+       <width>711</width>
+       <height>371</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -834,8 +855,8 @@ QAbstractScrollArea { background: black; }
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>621</width>
-        <height>411</height>
+        <width>711</width>
+        <height>371</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -862,7 +883,7 @@ QAbstractScrollArea { background: black; }
          <property name="font">
           <font>
            <family>Calibri</family>
-           <pointsize>18</pointsize>
+           <pointsize>16</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -935,9 +956,9 @@ QSlider::sub-page:vertical {
     <widget class="QLabel" name="current_date_logs">
      <property name="geometry">
       <rect>
-       <x>750</x>
+       <x>740</x>
        <y>50</y>
-       <width>251</width>
+       <width>271</width>
        <height>81</height>
       </rect>
      </property>
@@ -1989,6 +2010,75 @@ QAbstractScrollArea { background: black; }
      </property>
      <property name="text">
       <string>FINISH</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="current_password">
+    <widget class="QLabel" name="background_current">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1024</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">frame-color:rgb(225, 225, 225);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>graphic/emoto2.png</pixmap>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_back_current">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>100</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	border-color: rgb(225,225,225);
+	color: rgb(146, 150, 150);
+	font: 300 60pt &quot;Calibri Light&quot; ;
+	font-weight: bold;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>←</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_current_password">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>140</y>
+       <width>960</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(146, 150, 150);
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>CURRENT PASSCODE:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>
