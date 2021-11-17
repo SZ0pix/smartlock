@@ -69,7 +69,7 @@
 	border-width: 3px;
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 300 36pt &quot;Calibri Light&quot;;
+	font: 900 36pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
    </string>
      </property>
@@ -473,7 +473,7 @@
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>1</string>
+      <string>START</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_date_start">
@@ -548,14 +548,14 @@
      <property name="font">
       <font>
        <family>Calibri Light</family>
-       <pointsize>36</pointsize>
+       <pointsize>86</pointsize>
        <italic>false</italic>
-       <bold>false</bold>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
       <string notr="true">	color: rgb(146, 150, 150);
-	font: 300 36pt &quot;Calibri Light&quot;;
+	font: 900 86pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
@@ -598,7 +598,7 @@
 	border-width: 3px;
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 300 36pt &quot;Calibri Light&quot;;
+	font: 900 40pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
    </string>
      </property>
@@ -721,28 +721,7 @@
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>NEW PASSCODE</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="button_5_set">
-     <property name="geometry">
-      <rect>
-       <x>510</x>
-       <y>430</y>
-       <width>490</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">	border-style: solid;
-	border-width: 3px;
-	border-radius: 16px;
-	color: rgb(146, 150, 150);
-	font: 300 36pt &quot;Calibri Light&quot;;
-	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
-     </property>
-     <property name="text">
-      <string>LATEST PASSCODE</string>
+      <string>PASSCODE MENU</string>
      </property>
     </widget>
    </widget>
@@ -968,7 +947,7 @@ QSlider::sub-page:vertical {
 	border-width: 3px;
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 300 24pt &quot;Calibri Light&quot;;
+	font: 900 26pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
@@ -1064,7 +1043,7 @@ QSlider::sub-page:vertical {
 	border-width: 3px;
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 300 24pt &quot;Calibri Light&quot;;
+	font: 900 26pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
@@ -2013,8 +1992,8 @@ QAbstractScrollArea { background: black; }
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="current_password">
-    <widget class="QLabel" name="background_current">
+   <widget class="QWidget" name="menu_password">
+    <widget class="QLabel" name="background_menu">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -2033,7 +2012,7 @@ QAbstractScrollArea { background: black; }
       <pixmap>graphic/emoto2.png</pixmap>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_back_current">
+    <widget class="QPushButton" name="button_back_menu">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -2056,7 +2035,7 @@ QAbstractScrollArea { background: black; }
       <string>←</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_current_password">
+    <widget class="QLabel" name="label_menu_password">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -2071,7 +2050,7 @@ QAbstractScrollArea { background: black; }
 	border-color: rgb(146, 150, 150);
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 300 36pt &quot;Calibri Light&quot;;
+	font:  900 38pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
@@ -2079,6 +2058,48 @@ QAbstractScrollArea { background: black; }
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_1_menu">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>390</y>
+       <width>490</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>NEW PASSCODE</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_2_menu">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>290</y>
+       <width>490</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 300 36pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>MODE </string>
      </property>
     </widget>
    </widget>
@@ -2140,7 +2161,7 @@ QAbstractScrollArea { background: black; }
 	border-width: 3px;
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 300 24pt &quot;Calibri Light&quot;;
+	font: 900 26pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">

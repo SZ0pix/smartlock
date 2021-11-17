@@ -18,6 +18,7 @@ import logs
 import logslogging
 import communication
 import passwords
+import mail
 
 data = [9,3,0]
 photoPath="C:/Users/mjszo/OneDrive/Pulpit/1/photos"
@@ -35,29 +36,49 @@ logger2 = logging.getLogger(__name__)
 data = [9, 3, 0]
 HEIGHT = 600                                                    #standard window size
 WIDTH = 1024
-#PASSCODE = '4563'                                             #password
 POSITION_X = 0
 POSITION_Y = 50
 
+INTERVAL = 1                                                    #how often autogenerate passcode (in months)
+
 class WorkerSignals(qtc.QObject):
-    updateTimeSignal = qtc.pyqtSignal(str,str)
+    updateTimeSignal = qtc.pyqtSignal(str,str,bool)
     incomingDataSignal = qtc.pyqtSignal(int)
 
 class SerialCom(qtc.QRunnable):
     def __init__(self):
         super().__init__()
-        self.signals = WorkerSignals()
+        self.signals = WorkerSignals()                                  #initiate signals
+        self.start_month = datetime.datetime.today().strftime('%d')  # needed for auto mode - will be overwritten
+        self.start_month=int((self.start_month))                       # change var type
+
+        self.interwal=INTERVAL                                          #create local var
 
     def run(self):
         i = 0
         while(True):
             i += 1
-            time.sleep(1)
-            logger2.warning(f"Mamy {i}")
-            self.update_date = datetime.datetime.today().strftime('%A, %d.%m')
-            self.update_time = datetime.datetime.today().strftime('%H:%M:%S')
-            self.signals.updateTimeSignal.emit(self.update_time, self.update_date)
 
+            time.sleep(1)                                               #loop delay
+            #logger2.warning(f"Mamy {i}")
+            self.update_date = datetime.datetime.today().strftime('%A, %d.%m')          #take current date and time
+            self.update_time = datetime.datetime.today().strftime('%H:%M:%S')
+            #self.signals.updateTimeSignal.emit(self.update_time, self.update_date)        #emit signals with current date and time
+
+            self.new_month=datetime.datetime.today().strftime('%d')
+
+            self.new_month=(int(self.new_month))
+
+
+
+            self.diff = (abs(self.start_month-self.new_month))                  #difference between old month in memory and current
+            if (self.diff==self.interwal) or (self.diff==(12-self.interwal)):                                        #checks if difference matches interval
+               self.start_month=self.new_month                                 #overwrite start_month variable
+               #self.signals.intervalFulfillmentSignal.emit(True)
+               self.signals.updateTimeSignal.emit(self.update_time, self.update_date, True)
+            else:
+               # self.signals.intervalFulfillmentSignal.emit(False)
+               self.signals.updateTimeSignal.emit(self.update_time, self.update_date, False)
             #self.updateWidgets.emit(self.update_time)
 
             #print(self.update_time)
@@ -89,13 +110,16 @@ class MainWindow(qwt.QWidget):
         super().__init__(*args, **kwargs)
         #self.pixmap_key = qtg.QIcon("C:/Users/mjszo/OneDrive/Pulpit/1/graphic/setting.png")
 
+        #self.old_date = self.update_date = datetime.datetime.today().strftime('%d.%m')
+        self.old_date = "10.10"
+
         self.ui = Ui_Stacked()
         self.ui.setupUi(self)
         self.setWindowFlags(flags)
         self.resize(WIDTH, HEIGHT)
-        self.setWindowTitle('First')
+        self.setWindowTitle('SmartLock_GUI')
         self.move(POSITION_X, POSITION_Y)
-
+        self.auto = AUTO
         self.start()
 
         self.initiate()
@@ -109,10 +133,15 @@ class MainWindow(qwt.QWidget):
 
         #self.signals.incomingDataSignal.connect(MainWindow.trigerchange)
 
-    @qtc.pyqtSlot(str,str)
-    def printCurrentDataTime(self, time, date):
+    @qtc.pyqtSlot(str,str,bool)
+    def printCurrentDataTime(self, time, date, signal):
         self.ui.label_hour_start.setText(time)
         self.ui.label_date_start.setText(date)
+
+        if signal and self.auto:
+            #print("auto_update")
+            print(time)
+            self.generate()
         #self.ui.label_date_start.setText(time)
     # self.ui.label_hour_start.setText(text)
     #    print(f'siema {text} elo')
@@ -130,6 +159,15 @@ class MainWindow(qwt.QWidget):
         else:
             print(data)
             print("TTTTTTTTTTTTTTTTTTTTTTTTTTTt")
+
+   # @qtc.pyqtSlot(bool)
+   # def auto_update(self,signal):
+   #     #print(signal)
+   #     #print(self.auto)
+   #     if signal and self.auto:
+   #         print("auto_update")
+    #        self.generate()
+
 
     #@qtc.pyqtSlot(int)
     #def incomin
@@ -149,6 +187,7 @@ class MainWindow(qwt.QWidget):
         worke = Worker2()
         runnalbe.signals.updateTimeSignal.connect(self.printCurrentDataTime)
         worke.signals.incomingDataSignal.connect(self.trigerchange)
+        #runnalbe.signals.intervalFulfillmentSignal.connect(self.auto_update)
         pool.start(worke)
         pool.start(runnalbe)
 
@@ -197,14 +236,20 @@ class MainWindow(qwt.QWidget):
         self.ui.button_back_logs.clicked.connect(self.start)
         self.ui.slider_month_logs.valueChanged.connect(self.updateLog)
         self.ui.slider_year_logs.valueChanged.connect(self.updateLog)
+
         self.ui.button_1_set.clicked.connect(self.start_enroll)
         self.ui.button_3_set.clicked.connect(self.setdelay)
-        self.ui.button_4_set.clicked.connect(self.generate)
-        self.ui.button_5_set.clicked.connect(self.check_current_password)
+        self.ui.button_4_set.clicked.connect(self.menu_password)
+        #self.ui.button_4_set.clicked.connect(self.generate)
+        #self.ui.button_5_set.clicked.connect(self.check_current_password)
+
+        self.ui.button_1_menu.clicked.connect(self.generate)
+        self.ui.button_2_menu.clicked.connect(self.change_mode)
+
         self.ui.button_set_delay.clicked.connect(self.senddelay)
         self.ui.slider_delay.valueChanged.connect(self.setdelay)
         self.ui.button_back_delay.clicked.connect(self.settings)
-        self.ui.button_back_current.clicked.connect(self.settings)
+        self.ui.button_back_menu.clicked.connect(self.settings)
 
 
         self.ui.button_finish_enroll.clicked.connect(self.finish_enroll)
@@ -235,13 +280,51 @@ class MainWindow(qwt.QWidget):
         self.ui.button_Z.clicked.connect(lambda: self.push2('Z'))
         self.ui.button_Space.clicked.connect(lambda: self.push2(' '))
 
-    def generate(self):
-        passwords.newpass()
+    def change_mode(self):
+        if self.auto==True:
+            self.auto=False
+            self.update_button()
+        else:
+            self.auto=True
+            self.update_button()
 
-    def check_current_password(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.current_password)
+    def update_button(self):
+        if self.auto == False:
+            self.ui.button_2_menu.setText("AUTO MODE: OFF")
+            self.ui.button_1_menu.show()
+        else:
+            self.ui.button_2_menu.setText("AUTO MODE: ON")
+            self.ui.button_1_menu.hide()
+
+
+    def generate(self):
+        self.today=self.update_date = datetime.datetime.today().strftime('%d.%m')
+        if(self.old_date!=self.today):
+            passwords.newpass()
+            self.old_date=self.today
+            current_password=passwords.check_current()
+            self.ui.label_menu_password.setText("CURRENT PASSWORD: "+passwords.check_current())
+            mail.sendmail(current_password)
+        else:
+            self.tmr2 = qtc.QTimer()  # one shot timer for 4 seconds
+            self.tmr2.setSingleShot(True)
+            self.tmr2.timeout.connect(self.fixlabel)
+            self.tmr2.start(2000)
+            self.ui.label_menu_password.setText("PASSWORD CAN BE CHANGED ONCE A DAY")
+
+    def fixlabel(self):
+        self.ui.label_menu_password.setText("CURRENT PASSWORD: "+passwords.check_current())
+
+
+
+
+
+
+    def menu_password(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.menu_password)
         current_password=passwords.check_current()
-        self.ui.label_current_password.setText("CURRENT PASSWORD: "+current_password)
+        self.update_button()
+        self.ui.label_menu_password.setText("CURRENT PASSWORD: "+current_password)
 
     def setdelay(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.delay)
@@ -354,7 +437,7 @@ class MainWindow(qwt.QWidget):
         self.ui.stackedWidget.setCurrentWidget(self.ui.settings)
 
     def updateLog(self):
-        months={1:"January" , 2:"February" , 3:"March" , 4:"April" , 5:"May" , 6:"June" , 7:"July", 8:"August",9:"September",10:"October",11:"November",12:"December"}
+        months={1:"January" , 2:"February" , 3:"March" , 4:"April" , 5:"May" , 6:"June" , 7:"July", 8:"August", 9:"September", 10:"October",11:"November",12:"December"}
         number=self.ui.slider_month_logs.value()
         searched_month=months[number]
         try:
@@ -425,7 +508,7 @@ class MainWindow(qwt.QWidget):
  #       self.second_window.show()
  #       self.close()
     def switch_to_saver(self):
-        self.timerVal = 1000
+        self.timerVal = 7000
         HELPVAR=False
         self.ui.stackedWidget.setCurrentWidget(self.ui.screensaver_screen)
 
@@ -476,7 +559,7 @@ if __name__ == '__main__':
     #			liczba=random.randint(1,3)
     #			print(liczba)
     #			ser.write(str(liczba).encode('utf-8'))
-
+    AUTO = True
 
     app = qwt.QApplication(sys.argv)
     w = MainWindow()
