@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1030</width>
+    <width>1031</width>
     <height>601</height>
    </rect>
   </property>
@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>7</number>
+    <number>8</number>
    </property>
    <widget class="QWidget" name="keyboard_key">
     <widget class="QLabel" name="background_key">
@@ -430,7 +430,7 @@
     <zorder>label_screen</zorder>
     <zorder>button_screen</zorder>
    </widget>
-   <widget class="QWidget" name="access">
+   <widget class="QWidget" name="start">
     <widget class="QLabel" name="label_start">
      <property name="geometry">
       <rect>
@@ -656,7 +656,7 @@
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>CHECK LOGS</string>
+      <string>LOGS</string>
      </property>
     </widget>
     <widget class="QPushButton" name="button_3_set">
@@ -677,7 +677,7 @@
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>SET LOCK DELAY</string>
+      <string>TIMERS</string>
      </property>
     </widget>
     <widget class="QPushButton" name="button_back_set">
@@ -721,7 +721,7 @@
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>PASSCODE MENU</string>
+      <string>PASSCODE</string>
      </property>
     </widget>
    </widget>
@@ -2146,12 +2146,12 @@ QAbstractScrollArea { background: black; }
       <string>←</string>
      </property>
     </widget>
-    <widget class="QLabel" name="current_delay">
+    <widget class="QLabel" name="relay_delay">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>190</y>
-       <width>331</width>
+       <x>500</x>
+       <y>120</y>
+       <width>491</width>
        <height>81</height>
       </rect>
      </property>
@@ -2165,7 +2165,7 @@ QAbstractScrollArea { background: black; }
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>CURRENT VALUE</string>
+      <string>RELAY  DEALAY VALUE:</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -2174,7 +2174,7 @@ QAbstractScrollArea { background: black; }
     <widget class="QPushButton" name="button_set_delay">
      <property name="geometry">
       <rect>
-       <x>630</x>
+       <x>660</x>
        <y>350</y>
        <width>180</width>
        <height>100</height>
@@ -2192,11 +2192,11 @@ QAbstractScrollArea { background: black; }
       <string>SET</string>
      </property>
     </widget>
-    <widget class="QSlider" name="slider_delay">
+    <widget class="QSlider" name="relay_delay_slider">
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>200</y>
+       <y>130</y>
        <width>331</width>
        <height>61</height>
       </rect>
@@ -2230,6 +2230,84 @@ QSlider::sub-page:horizontal {
       <number>1</number>
      </property>
      <property name="maximum">
+      <number>5</number>
+     </property>
+     <property name="sliderPosition">
+      <number>3</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="slideshow_delay">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>230</y>
+       <width>491</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">	border-style: solid;
+	border-color: rgb(146, 150, 150);
+	border-width: 3px;
+	border-radius: 16px;
+	color: rgb(146, 150, 150);
+	font: 900 26pt &quot;Calibri Light&quot;;
+	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
+     </property>
+     <property name="text">
+      <string>SLIDESHOW DELAY VALUE:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slideshow_delay_slider">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>240</y>
+       <width>331</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
+    background: rgb(225,225,225);
+    position: absolute; /* absolutely position 4px from the left and right of the widget. setting margins on the widget should work too... */
+    top: 25px; bottom: 25px;
+	
+}
+
+QSlider::handle:horizontal {
+    height: 27px;
+	width:27px;
+    background: rgb(225,225,225);
+	border-radius: 15px;
+	border:2px solid rgb(146,150,150);
+	margin: -12px 0px;
+}
+
+QSlider::add-page:horizontal {
+    background: rgb(146,150,150);
+}
+
+QSlider::sub-page:horizontal {
+    background: rgb(146,150,150);
+}</string>
+     </property>
+     <property name="minimum">
+      <number>3</number>
+     </property>
+     <property name="maximum">
+      <number>60</number>
+     </property>
+     <property name="value">
+      <number>5</number>
+     </property>
+     <property name="sliderPosition">
       <number>5</number>
      </property>
      <property name="orientation">
