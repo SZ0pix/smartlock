@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>8</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="keyboard_key">
     <widget class="QLabel" name="background_key">
@@ -74,7 +74,7 @@
    </string>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string/>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -375,6 +375,19 @@
       </size>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>440</y>
+       <width>75</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="screensaver_screen">
     <widget class="QLabel" name="background_screen">
@@ -396,8 +409,8 @@
     <widget class="QPushButton" name="button_screen">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
+       <x>20</x>
+       <y>20</y>
        <width>1024</width>
        <height>644</height>
       </rect>
@@ -423,7 +436,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string/>
      </property>
     </widget>
     <zorder>background_screen</zorder>
@@ -548,18 +561,18 @@
      <property name="font">
       <font>
        <family>Calibri Light</family>
-       <pointsize>86</pointsize>
+       <pointsize>78</pointsize>
        <italic>false</italic>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
       <string notr="true">	color: rgb(146, 150, 150);
-	font: 900 86pt &quot;Calibri Light&quot;;
+	font: 900 78pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>1</string>
+      <string/>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -586,9 +599,9 @@
     <widget class="QLabel" name="label_set">
      <property name="geometry">
       <rect>
-       <x>155</x>
+       <x>115</x>
        <y>30</y>
-       <width>721</width>
+       <width>801</width>
        <height>71</height>
       </rect>
      </property>
@@ -598,7 +611,7 @@
 	border-width: 3px;
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 900 40pt &quot;Calibri Light&quot;;
+	font: 900 36pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)
    </string>
      </property>
@@ -869,7 +882,7 @@ QAbstractScrollArea { background: black; }
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>TextLabel</string>
+          <string/>
          </property>
          <property name="textFormat">
           <enum>Qt::AutoText</enum>
@@ -885,10 +898,10 @@ QAbstractScrollArea { background: black; }
     <widget class="QSlider" name="slider_year_logs">
      <property name="geometry">
       <rect>
-       <x>883</x>
+       <x>900</x>
        <y>160</y>
        <width>61</width>
-       <height>201</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -917,7 +930,7 @@ QSlider::sub-page:vertical {
 }</string>
      </property>
      <property name="minimum">
-      <number>2021</number>
+      <number>2019</number>
      </property>
      <property name="maximum">
       <number>2030</number>
@@ -947,11 +960,11 @@ QSlider::sub-page:vertical {
 	border-width: 3px;
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 900 26pt &quot;Calibri Light&quot;;
+	font: 900 22pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string/>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -960,10 +973,10 @@ QSlider::sub-page:vertical {
     <widget class="QSlider" name="slider_month_logs">
      <property name="geometry">
       <rect>
-       <x>793</x>
+       <x>790</x>
        <y>160</y>
        <width>61</width>
-       <height>201</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1033,7 +1046,7 @@ QSlider::sub-page:vertical {
       <rect>
        <x>110</x>
        <y>30</y>
-       <width>781</width>
+       <width>891</width>
        <height>80</height>
       </rect>
      </property>
@@ -1043,11 +1056,11 @@ QSlider::sub-page:vertical {
 	border-width: 3px;
 	border-radius: 16px;
 	color: rgb(146, 150, 150);
-	font: 900 26pt &quot;Calibri Light&quot;;
+	font: 900 22pt &quot;Calibri Light&quot;;
 	background-image (&quot;C:\Users\mjszo\Desktop\1\graphic\blang.png&quot;)</string>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string/>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -1057,7 +1070,7 @@ QSlider::sub-page:vertical {
      <property name="geometry">
       <rect>
        <x>720</x>
-       <y>420</y>
+       <y>440</y>
        <width>180</width>
        <height>100</height>
       </rect>
@@ -1080,8 +1093,20 @@ QSlider::sub-page:vertical {
        <x>60</x>
        <y>220</y>
        <width>861</width>
-       <height>181</height>
+       <height>200</height>
       </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>150</height>
+      </size>
      </property>
      <property name="styleSheet">
       <string notr="true">QWidget{ 
@@ -1141,7 +1166,7 @@ QAbstractScrollArea { background: black; }
         <x>0</x>
         <y>0</y>
         <width>2556</width>
-        <height>164</height>
+        <height>198</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -1974,7 +1999,7 @@ QAbstractScrollArea { background: black; }
      <property name="geometry">
       <rect>
        <x>510</x>
-       <y>420</y>
+       <y>440</y>
        <width>180</width>
        <height>100</height>
       </rect>
@@ -2149,9 +2174,9 @@ QAbstractScrollArea { background: black; }
     <widget class="QLabel" name="relay_delay">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>410</x>
        <y>120</y>
-       <width>491</width>
+       <width>571</width>
        <height>81</height>
       </rect>
      </property>
@@ -2195,7 +2220,7 @@ QAbstractScrollArea { background: black; }
     <widget class="QSlider" name="relay_delay_slider">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>40</x>
        <y>130</y>
        <width>331</width>
        <height>61</height>
@@ -2242,9 +2267,9 @@ QSlider::sub-page:horizontal {
     <widget class="QLabel" name="slideshow_delay">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>410</x>
        <y>230</y>
-       <width>491</width>
+       <width>571</width>
        <height>81</height>
       </rect>
      </property>
@@ -2267,7 +2292,7 @@ QSlider::sub-page:horizontal {
     <widget class="QSlider" name="slideshow_delay_slider">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>40</x>
        <y>240</y>
        <width>331</width>
        <height>61</height>
