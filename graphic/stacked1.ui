@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="keyboard_key">
     <widget class="QLabel" name="background_key">
@@ -51,7 +51,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../1/graphic/emoto2.png</pixmap>
+      <pixmap>emoto2.png</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_key">
@@ -391,7 +391,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../1/graphic/emoto2.png</pixmap>
+      <pixmap>emoto2.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="button_screen">
@@ -445,7 +445,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>graphic/emoto1.png</pixmap>
+      <pixmap>emoto1.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="button_start">
@@ -483,7 +483,7 @@
       <rect>
        <x>5</x>
        <y>10</y>
-       <width>611</width>
+       <width>411</width>
        <height>60</height>
       </rect>
      </property>
@@ -535,7 +535,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>graphic/emoto2.png</pixmap>
+      <pixmap>../../../1/graphic/emoto2.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="button_access">
@@ -586,7 +586,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../1/graphic/emoto2.png</pixmap>
+      <pixmap>emoto2.png</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_set">
@@ -770,7 +770,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../1/graphic/emoto2.png</pixmap>
+      <pixmap>emoto2.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="button_back_logs">
@@ -1058,7 +1058,7 @@ QSlider::sub-page:vertical {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../1/graphic/emoto2.png</pixmap>
+      <pixmap>emoto2.png</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_instruction_enroll">
@@ -2031,7 +2031,7 @@ QAbstractScrollArea { background: black; }
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../1/graphic/emoto2.png</pixmap>
+      <pixmap>emoto2.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="button_back_menu">
@@ -2142,7 +2142,7 @@ QAbstractScrollArea { background: black; }
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../1/graphic/emoto2.png</pixmap>
+      <pixmap>emoto2.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="button_back_delay">

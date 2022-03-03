@@ -1,28 +1,5 @@
 import datetime
-import logging
-import oneStacked
 
-#create logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-now = datetime.datetime.now()
-#create handler for file
-f_handler = logging.FileHandler("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogLogging-{}.log".format(now.strftime("%B 20%y")))
-f_handler.setLevel(logging.INFO)
-
-#create formatter for handler
-f_format = logging.Formatter('%(asctime)s - %(message)s')
-f_handler.setFormatter(f_format)
-
-#add handler to logger
-logger.addHandler(f_handler)
-#data =[9,3,0]
-
-def startenroll():
-    print('##enroll started')
-
-def stopenroll():
-    print('##enroll stopped timeout')
 
 def analize(data):
     try:
@@ -60,17 +37,5 @@ def analize(data):
             return (return_text)
         else:
             pass
-    except:
-        pass
-
-
-
-
-def readLog2(month,year):
-    try:
-        f = open("C:/Users/mjszo/OneDrive/Pulpit/SmartLockLogLogging-"+month+" {}.log".format(str(year)),'r')
-        line = f.read().splitlines()
-        f.close()
-        return line
     except:
         pass

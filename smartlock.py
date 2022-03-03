@@ -11,45 +11,47 @@ import os
 import datetime
 import logging
 import sys
+import serial
 # python files
-import logs
-import logslogging
-import communication
-import passwords
-import mail
+#import logs sprawdzic czy bez tego dziala
+from files import logslogging
+from files import logsloggingenroll
+from files import communication
+from files import passwords
+from files import mail
+
 
 data = [9, 3, 0]
-photoPath = "C:/Users/mjszo/OneDrive/Pulpit/1/photos"
-uiPath = "C:/Users/mjszo/OneDrive/Pulpit/1"
+photoPath = "photos"
 
-Ui_Stacked, baseClass = uic.loadUiType(f"{uiPath}/stacked.ui")
+Ui_Stacked, baseClass = uic.loadUiType("graphic/stacked1.ui")
 
 logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 flags = qtc.Qt.WindowFlags(qtc.Qt.FramelessWindowHint | qtc.Qt.WindowStaysOnTopHint)
 
 logger2 = logging.getLogger(__name__)
-data = [9, 3, 0]
 HEIGHT = 600        #       standard window sizex
 WIDTH = 1024
 POSITION_X = 0      #       position on screen x
-POSITION_Y = 50     #       position on screen y
-TIMER = 5000        #       default slideshow delay (in ms)
+POSITION_Y = 0     #       position on screen y
 TIMER = 5000        #       default slideshow delay (in ms)
 INTERVAL = 1        #       default passcode generator interval (in months)
-SETTINGS_PASSCODE = '111111'
+SETTINGS_PASSCODE = '111118'
+MECHANICS_PASSCODE = '8816'
 global GLOBALTRIGGER
 GLOBALTRIGGER = False
 
+
 class Signals(qtc.QObject):                           #signals used in code
     updateTimeSignal = qtc.pyqtSignal(str, str, bool)       #for RTC clock
-    incomingDataSignal = qtc.pyqtSignal(int)                #for communication with Arduino board
+    incomingDataSignal = qtc.pyqtSignal(str)                #for communication with Arduino board
 
 class Clock_thread(qtc.QRunnable):
     def __init__(self):
         super().__init__()
         self.signals = Signals()                                  # initiate signals
-        self.start_month = datetime.datetime.today().strftime('%d')     # needed for auto mode - will be overwritten
+        self.start_month = datetime.datetime.today().strftime('%m')     # needed for auto mode - will be overwritten
         self.start_month = int(self.start_month)                        # change var type
         self.interwal = INTERVAL                                        # create local var with value of global var INTERVAL
 
@@ -58,7 +60,7 @@ class Clock_thread(qtc.QRunnable):
             time.sleep(1)  # loop delay
             self.update_date = datetime.datetime.today().strftime('%A, %d.%m')  # take current date and time
             self.update_time = datetime.datetime.today().strftime('%H:%M:%S')
-            self.new_month = datetime.datetime.today().strftime('%d')
+            self.new_month = datetime.datetime.today().strftime('%m')
             self.new_month = (int(self.new_month))
 
             self.diff = (abs(self.start_month - self.new_month))    # difference between old month in memory and current
@@ -75,24 +77,34 @@ class Communication_thread(qtc.QRunnable):
     def __init__(self):
         super().__init__()
         self.signals = Signals()                                #initiate signals
+        print('Running. Press CTRL-C to exit.')
+        self.arduino = serial.Serial("/dev/ttyACM0", 9600, timeout=0.3)
+        
+    def run(self):    #main function of thread
+        if self.arduino.isOpen():
+            print("{} connected!".format(self.arduino.port))
+            while (True):
+                if  self.arduino.inWaiting()>0: 
+                    answer=str(self.arduino.readline().decode('utf-8').rstrip())
+                    print(answer)
+                    print("Przyszło")
+                    self.signals.incomingDataSignal.emit(answer)
+                    self.arduino.flushInput() #remove data after reading
+        else:
+            print("zepsulosie")
 
-    def run(self):                                              #main function of thread
-        while (True):
-            number = input()                                    #data reciverd from arduino board
-            try:
-                data = int(number)                              #conversion
-                self.signals.incomingDataSignal.emit(data)      #emit signal with incoming frame
-            except:
-                pass
-            print(data)
-            logger2.warning(f"poprzedni imput{number}")
-
+    def write(self, msg):
+        self.arduino.flushInput() #remove data after reading
+        self.arduino.write(str(msg).encode())
+        print("Poszło")
+            
 class Mail_thread(qtc.QRunnable):
     def __init__(self):
         super().__init__()
         self.signals = Signals()                #initiate signals
 
     def run(self):
+    
         while(True):
             time.sleep(1)                       #delay for optimizing GUI
             global GLOBALTRIGGER                #checks value of global variable (set earlier)
@@ -109,7 +121,7 @@ class MainWindow(qwt.QWidget):
         self.sendNow = False
         self.ui = Ui_Stacked()                  #load ui
         self.ui.setupUi(self)
-        self.setWindowFlags(flags)
+        #self.setWindowFlags(flags)
         self.resize(WIDTH, HEIGHT)
         self.setWindowTitle('SmartLock_GUI')    #set title of window
         self.move(POSITION_X, POSITION_Y)       #set starting position on screen
@@ -121,7 +133,9 @@ class MainWindow(qwt.QWidget):
         self.run_task()                          #run threads
         time.sleep(0.5)                         #delay for optimizing GUI
         self.show()                             #showing GUI
-
+        self.arduino = False
+        self.number=''
+        
     @qtc.pyqtSlot(str, str, bool)               #slot for signal
     def printCurrentDataTime(self, time, date, signal):
         self.ui.label_hour_start.setText(time)          #recive current time and date
@@ -130,41 +144,36 @@ class MainWindow(qwt.QWidget):
         if signal and self.auto:                        #if auto mode is ON and signal of interval
             self.generate()                             #change password
 
-    @qtc.pyqtSlot(int)                          #slot for signal
-    def trigerchange(self, d):
-        logger2.warning(f"elemele {d}")
-        data[1] = d
-        dupa = communication.analize(data)
-        print(type(dupa))
-        print(dupa)
-        self.ui.label_instruction_enroll.setText(dupa)
+    @qtc.pyqtSlot(str)                          #slot for signal
+    def trigerchange(self, answer):
+        if(answer[6]==">"):
+            out=int(answer[5])
+        elif(answer[7]==">"):
+            out=int(answer[5]+answer[6])
+        elif(answer[8]==">"):
+            out=int(answer[5]+answer[6]+answer[7])
+        data=[int(answer[1]),int(answer[3]),out]
+        text = communication.analize(data)
+        self.data=data
+        if (data[0] == 1 and data[1] == 0):
+            self.tmr4.stop()
+            self.ui.button_access.setText("ACCESS GRANTED")
+            self.arduino=True
+            self.access_granted()
+        if (data[0] == 0 and data[1] == 0 and data[2] == 9):
+            self.tmr4.stop()
+            self.ui.button_access.setText("ACCESS DENIED")
+            self.arduino=True
+            self.access_denied()
+        if len(str(text))>4:
+            self.ui.label_instruction_enroll.setText(text)
         if (data[1] == 4):
             self.fill()
         else:
-            print(data)
-            print("TTTTTTTTTTTTTTTTTTTTTTTTTTTt")
-
-    # @qtc.pyqtSlot(bool)
-    # def auto_update(self,signal):
-    #     #print(signal)
-    #     #print(self.auto)
-    #     if signal and self.auto:
-    #         print("auto_update")
-    #        self.generate()
-
-    # @qtc.pyqtSlot(int)
-    # def incomin
-
-    #  def switch_to_firstXD(self):#
-    #
-    #         self.first_window = FirstWindow()
-    #         self.first_window.resize(WIDTH, HEIGHT)
-    #         self.first_window.setWindowTitle('First')
-    #         self.first_window.move(POSITION_X,POSITION_Y)
-    #         self.first_window.show()
+            pass
 
     def run_task(self):
-        pool = qtc.QThreadPool.globalInstance()                      #creat pool for threads
+        self.pool = qtc.QThreadPool.globalInstance()                      #creat pool for threads
         self.runnalbe = Clock_thread()                               #create instances of threads
         self.worke = Communication_thread()
         self.wor = Mail_thread()
@@ -172,9 +181,9 @@ class MainWindow(qwt.QWidget):
         self.runnalbe.signals.updateTimeSignal.connect(self.printCurrentDataTime)       #connection of signals and slots
         self.worke.signals.incomingDataSignal.connect(self.trigerchange)
 
-        pool.start(self.worke)              #starting threads
-        pool.start(self.runnalbe)
-        pool.start(self.wor)
+        self.pool.start(self.worke)              #starting threads
+        self.pool.start(self.runnalbe)
+        self.pool.start(self.wor)
 
     def initiate(self):                         #all buttons and sliders connections
         #       keyboard
@@ -191,7 +200,6 @@ class MainWindow(qwt.QWidget):
         self.ui.button_back_key.clicked.connect(self.start)
         self.ui.button_cancel_key.clicked.connect(self.cancel)
         self.ui.button_set_key.clicked.connect(self.settings)
-        self.ui.pushButton.clicked.connect(logslogging.configure)
         #       screensaver
         self.ui.button_screen.clicked.connect(self.stopTMR3)
         #       start
@@ -203,15 +211,15 @@ class MainWindow(qwt.QWidget):
         self.ui.button_2_set.clicked.connect(self.logs)
         self.ui.button_3_set.clicked.connect(self.set_timer)
         self.ui.button_4_set.clicked.connect(self.menu_password)
+        self.ui.button_5_set.clicked.connect(self.turn_off)
         self.ui.button_back_set.clicked.connect(self.go_to_keyboard)
         #       logs
-        self.ui.button_back_logs.clicked.connect(self.start)
+        self.ui.button_back_logs.clicked.connect(self.settings_menu)
         self.ui.slider_month_logs.valueChanged.connect(self.updateLog)
         self.ui.slider_year_logs.valueChanged.connect(self.updateLog)
         #       enroll
         self.ui.button_finish_enroll.clicked.connect(self.finish_enroll)
         self.ui.button_clear_enroll.clicked.connect(self.cancel2)
-        self.ui.button_break_enroll.clicked.connect(self.break_enroll)
         self.ui.button_A.clicked.connect(lambda: self.push2('A'))
         self.ui.button_B.clicked.connect(lambda: self.push2('B'))
         self.ui.button_C.clicked.connect(lambda: self.push2('C'))
@@ -246,6 +254,9 @@ class MainWindow(qwt.QWidget):
         self.ui.slideshow_delay_slider.valueChanged.connect(self.set_timer)
         self.ui.relay_delay_slider.valueChanged.connect(self.set_timer)
 
+    def turn_off(self):
+        sys.exit()
+
     def change_mode(self):
         if self.auto == True:           #toggle button for auto mode
             self.auto = False
@@ -278,7 +289,7 @@ class MainWindow(qwt.QWidget):
             self.tmr2.setSingleShot(True)
             self.tmr2.timeout.connect(self.fix_label)
             self.tmr2.start(2000)
-            self.ui.label_menu_password.setText("PASSWORD CAN BE CHANGED ONCE A DAY")       #update label
+            self.ui.label_menu_password.setText("PASSWORD CAN'T BE CHANGED")       #update label
 
     def fix_label(self):
         self.ui.label_menu_password.setText("CURRENT PASSWORD: " + passwords.check_current())   #update Label
@@ -303,19 +314,20 @@ class MainWindow(qwt.QWidget):
 
 #   ENROLL
     def start_enroll(self):
+        
         self.ui.label_data_enroll.setVisible(False)     #hide widgets
-        self.ui.scrollArea_2.setVisible(False)
-        self.ui.label_instruction_enroll.setText('')
+        self.ui.scrollArea_2.setVisible(False)        
+        self.ui.button_clear_enroll.setVisible(False)
+        self.ui.label_instruction_enroll.setText('Press finger')
         self.ui.stackedWidget.setCurrentWidget(self.ui.enroll)      #set current widget
-        self.name = ''                                  #clear label text
-        self.check_name()                                #update label
-        communication.startenroll()                     #-----------------------------------------
-        #self.enroll()                                   #-----------------------------------------
-        communication.analize(data)
-        self.tmr6 = qtc.QTimer()  # one shot timer for 30 seconds
+        self.name = ''                                      #clear label text
+        self.check_name()                                   #update label
+        self.worke.write("<9;9;0>")                         #-----------------------------------------
+        communication.analize(data)               
+        self.tmr6 = qtc.QTimer()                            #one shot timer for 30 seconds
         self.tmr6.setSingleShot(True)
         self.tmr6.timeout.connect(self.break_enroll)
-        self.tmr6.start(30000)
+        self.tmr6.start(60000)
 
     def check_name(self):
         if (len(self.name) == 0):
@@ -323,24 +335,22 @@ class MainWindow(qwt.QWidget):
         else:
             self.ui.label_data_enroll.setText(self.name)
 
-    #def enroll(self):
-    #    communication.analize(data)
-
     def break_enroll(self):
         self.tmr6.stop()                #stop timer
-        communication.stopenroll()
-        self.start()
+        self.settings_menu()
 
     def finish_enroll(self):
         self.tmr6.stop()                #stop timer
-        id = 113
         name = self.name
-        logslogging.write_names(id, name)
+        print(self.data[2])
+        if (self.data[1] == 4):
+            logsloggingenroll.write_names(self.data[2], name)
         self.start()
 
     def fill(self):             #enables poles for entering data if enroll was succesful
         self.ui.label_data_enroll.setVisible(True)
         self.ui.scrollArea_2.setVisible(True)
+        self.ui.button_clear_enroll.setVisible(True)
 
     def push2(self, sign):              # letter keyboard
         if (len(self.name) <= 30):
@@ -371,7 +381,8 @@ class MainWindow(qwt.QWidget):
         self.keyboard = True
         self.check_label()                                                       #update label with variables
         self.ui.stackedWidget.setCurrentWidget(self.ui.keyboard_key)            #set widget
-        self.tmr4.stop()                                                        #stop screensaver timer
+        self.tmr4.stop()        #stop screensaver timer
+        self.arduino = False
 
     def check_label(self):
         if (len(self.number) == 0 and self.keyboard==True):
@@ -412,7 +423,7 @@ class MainWindow(qwt.QWidget):
     def check_password(self):
         password_input = self.number            #assign input to variable
         self.PASSCODE = passwords.check_current()
-        if (password_input == (self.PASSCODE) and self.keyboard==True):
+        if ((password_input == (self.PASSCODE) or password_input == '8816' )and self.keyboard==True):
             self.access_granted()
         elif ((len(password_input) == 4) and (password_input != self.PASSCODE) and self.keyboard==True):
             self.access_denied()
@@ -422,23 +433,31 @@ class MainWindow(qwt.QWidget):
             self.start()
 
     def access_denied(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.access_granted)
         self.ui.button_access.clicked.connect(self.stopTMR1)  # or if button is pushed
-        self.data = [0, 999, 0]
+        if self.arduino==False:
+            self.data = [0, 999, 0]
         self.status()           #update labels
 
     def access_granted(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.access_granted)
         self.ui.button_access.clicked.connect(self.stopTMR1)  # or if button is pushed
-        self.data = [2, 999, 0]
+        if self.arduino==False:
+            self.data = [2, 999, 0]
         self.status()          #update labels
 
     def status(self):           #information about veryfication
-        if self.data[0] == 2:
+        if (self.data[0] == 2 or self.data[0] == 1):
             self.ui.button_access.setText("ACCESS GRANTED")  # show message and after 4 sec go back
+            if self.arduino==False:
+                self.worke.write(f"<1;0;{str(self.ui.relay_delay_slider.value())}>")
+                self.arduino=True
         elif self.data[0] == 0:
             self.ui.button_access.setText("ACCESS DENIED")  # show message and after 4 sec go back
-        logslogging.write_log(self.data)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.access_granted)
+        if self.number=='8816':
+            logslogging.write_log_mechanic()
+            self.number=''
+        else:
+            logslogging.write_log(self.data)
         self.tmr1 = qtc.QTimer()  # one shot timer for 4 seconds
         self.tmr1.setSingleShot(True)
         self.tmr1.timeout.connect(self.start)
@@ -514,24 +533,7 @@ class MainWindow(qwt.QWidget):
 
 
 if __name__ == '__main__':
-    # ser=serial.Serial('/dev/ttyACM0',9600,timeout=1)
-    # ser.flush()
-    # while True :
-    #
-    #	if  ser.in_waiting>0:
-    #		zmn=ser.readline().decode('utf-8').rstrip()
-    #		zmn=int(zmn)
-    #		if zmn==9:
-    #			print(zmn)
-    #			liczba=random.randint(1,3)
-    #			print(liczba)
-    #			ser.write(str(liczba).encode('utf-8'))
     AUTO = True
-
     app = qwt.QApplication(sys.argv)
     w = MainWindow()
-
     sys.exit(app.exec_())  # starts eventloop
-    # dane = [0, 0, 999]
-    # print('doszliśmy')
-    # logs.writeLog(dane)

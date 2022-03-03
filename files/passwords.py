@@ -1,6 +1,5 @@
 import datetime
 import logging
-import oneStacked
 import random
 from logging import handlers
 
@@ -8,29 +7,16 @@ from logging import handlers
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-#logger_smtp = logging.getLogger(__name__)
 #create handler for file
-f_handler = logging.FileHandler("C:/Users/mjszo/OneDrive/Pulpit/Passwords.log")
+f_handler = logging.FileHandler("logs/Passwords.log")
 f_handler.setLevel(logging.INFO)
-
-
-#smtp_handler = logging.handlers.SMTPHandler(
-#                mailhost = ('smtp.gmail.com', 587),
-##                fromaddr = "why.mikolaj@gmail.pl",
-#                toaddrs = "why.mikolaj@gmail.pl",
-#                subject = "newcode")
-#smtp_handler.setLevel(logging.INFO)
 
 #create formatter for handler
 f_format = logging.Formatter('%(message)s')
 f_handler.setFormatter(f_format)
 
-#smtp_format = logging.Formatter('%(message)s')
-#smtp_handler.setFormatter(smtp_format)
-
 #add handler to logger
 logger.addHandler(f_handler)
-#logger_smtp.addHandler(smtp_handler)
 
 def newpass():
 #draws number from 0000 to 9999 then converts it into
@@ -51,7 +37,7 @@ def newpass():
 def check_current():
 #checks last password in file with passwords and returns it
     try:
-        f = open("C:/Users/mjszo/OneDrive/Pulpit/Passwords.log", 'r')
+        f = open("logs/Passwords.log", 'r')
         line = f.read().splitlines()
         current_password: str=line[(len(line)-1)]
         f.close()
@@ -65,7 +51,7 @@ def check_previous(c):
 #if so, it calls "newpass" function to draw new one
 #in other case writes new passcode to file
     try:
-        f = open("C:/Users/mjszo/OneDrive/Pulpit/Passwords.log", 'r')
+        f = open("logs/Passwords.log", 'r')
         line = f.read().splitlines()
         if ((len(line)) <= 10):
             length=len(line)
@@ -74,15 +60,12 @@ def check_previous(c):
         flag = 1
         for x in range(length):
            if c!=line[-(length)]:flag *= 1
+           elif c=='8816':flag *= 1
            else:flag *= 0
         f.close()
     except:
         f.close()
     if(flag==1):
         logger.info(c)
-        #try:
-            #smtp_handler.info("NOwy kod"+c)
-        #except:
-        #    print("NIE POSZLO")
     else:
         newpass()
